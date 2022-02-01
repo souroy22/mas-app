@@ -5,7 +5,8 @@ import MenuBookIcon from '@material-ui/icons/MenuBook';
 import SettingsIcon from '@material-ui/icons/Settings';
 import Link from "react-router-dom";
 
-
+import {setCurrentTab} from "../redux/actions"
+import {useDispatch} from "react-redux"
 
 const useStyles = makeStyles((theme) => ({
     drawer: {
@@ -26,10 +27,9 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Sidebar = ({orientation}) => {
-
-
     const classes = useStyles();
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     return (
         <Drawer classes={{ paper: classes.paper }} variant="permanent" anchor={orientation} style={{zIndex: 3, position: 'relative', flexShrink: 0}}>
@@ -40,18 +40,16 @@ const Sidebar = ({orientation}) => {
                   <IconButton>
                     <MenuBookIcon /> 
                 </IconButton>
-                  <Typography>Manage</Typography>
+                  <Typography onClick={()=>dispatch(setCurrentTab("MANAGER"))}>Manage</Typography>
                   
                
                 <Divider />
 
    
-                <IconButton onClick={() => {
-                            navigate('/tests')
-                        }}>
+                <IconButton onClick={()=>dispatch(setCurrentTab("AUTOMATE"))}>
                  <MenuBookIcon /> 
-                </IconButton>
-                     <Typography>Automate</Typography>
+                </IconButton >
+                     <Typography onClick={()=>dispatch(setCurrentTab("AUTOMATE"))}>Automate</Typography>
      
 
 
@@ -61,7 +59,7 @@ const Sidebar = ({orientation}) => {
                   <IconButton>
                     <MenuBookIcon /> 
                 </IconButton>
-                      <Typography>Support</Typography>
+                      <Typography onClick={()=>dispatch(setCurrentTab("SUPPORT"))}>Support</Typography>
                 <Divider />
         
                 

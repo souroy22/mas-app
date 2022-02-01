@@ -8,10 +8,9 @@ import { handle } from '../utils/helpers';
 import api from '../redux/api';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import { useForm } from 'react-hook-form';
-import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import { Stack } from '@mui/material';
-
+import {useDispatch,useSelector} from "react-redux"
 
 const useStyles = makeStyles((theme) => ({
     drawer: {
@@ -27,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const ProjectSideBar = ({orientation, fetch}) => {
-
+    const dispatch = useDispatch();
+    const {currentTab} = useSelector(state=>state.currentTab);
     const classes = useStyles();
     const params = useParams();
     const [cookies] = useCookies(['user']);
@@ -171,7 +171,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                     } */}
                         <Stack direction="column" >
                      
-                        <Grid item xs={10}  style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
+                       {currentTab === "MANAGER" && <Grid item xs={10}  style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
   
                                <IconButton onClick={drop} >
                                <MenuBookIcon /> 
@@ -179,51 +179,94 @@ const ProjectSideBar = ({orientation, fetch}) => {
                             <Link to="/company/:id/Docs">
                             <Typography>Docs</Typography>
                             </Link>                      
-                        </Grid>
+                        </Grid>}
                   
 
                         {projects ? <>
-                        <Link to="/company/:id/usecase">
+                            {currentTab === "MANAGER" && <Link to="/company/:id/usecase">
                         <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
                                 <IconButton>
                                <MenuBookIcon /> 
                                </IconButton> 
                             <Typography>Use Case Documents</Typography>
                         </Grid>
-                        </Link>
+                        </Link>}
 
-                        <Link to="/company/:id/Notes">
-                        <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
+                        {currentTab === "MANAGER" &&    <Link to="/company/:id/Notes">
+                       <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
                                 <IconButton>
                                <MenuBookIcon /> 
                                </IconButton> 
                             <Typography>Release Notes</Typography>
                         </Grid>
-                        </Link>
+                        </Link>}
                         </> : null}
 
-                        <Link to="/company/:id/Tasks">
+                        {currentTab === "MANAGER" &&  <Link to="/company/:id/Tasks">
                         <Grid item xs={10}  style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
                                <Typography>Tasks</Typography>
                         </Grid>
-                        </Link>
+                        </Link>}
 
                        
-                        <Link to="/company/:id/Bugs">
-                        <Grid item xs={10}  style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}>
+                        {currentTab === "MANAGER" &&  <Link to="/company/:id/Bugs">
+                         <Grid item xs={10}  style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}>
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
                             <Typography>Bugs</Typography>
                             </Grid>
-                        </Link>
+                        </Link>}
                       
                        
+                         
+
+                        {currentTab === "AUTOMATE" &&  <Link to="/company/:id/Report">
+                         <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
+                               <IconButton>
+                               <MenuBookIcon /> 
+                               </IconButton>
+                            <Typography>Test</Typography>
+                        </Grid>
+                        </Link>}
+                        {currentTab === "AUTOMATE" &&  <Link to="/company/:id/Report">
+                         <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
+                               <IconButton>
+                               <MenuBookIcon /> 
+                               </IconButton>
+                            <Typography>Run</Typography>
+                        </Grid>
+                        </Link>}
+                        {currentTab === "AUTOMATE" &&  <Link to="/company/:id/Report">
+                         <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
+                               <IconButton>
+                               <MenuBookIcon /> 
+                               </IconButton>
+                            <Typography>Tools</Typography>
+                        </Grid>
+                        </Link>}
+                       
+                        {currentTab === "SUPPORT" &&  <Link to="/company/:id/">
+                         <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
+                               <IconButton>
+                               <MenuBookIcon /> 
+                               </IconButton>
+                            <Typography>Tickets</Typography>
+                        </Grid>
+                        </Link>}
+                        {currentTab === "SUPPORT" &&  <Link to="/company/:id/">
+                         <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
+                               <IconButton>
+                               <MenuBookIcon /> 
+                               </IconButton>
+                            <Typography>Social</Typography>
+                        </Grid>
+                        </Link>}
                         <Link to="/company/:id/Report">
-                        <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
+                         <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>

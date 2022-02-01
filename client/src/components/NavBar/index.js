@@ -4,8 +4,9 @@ import {AppBar, IconButton, Toolbar, Typography} from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useNavigate } from 'react-router';
 import { useCookies } from 'react-cookie';
-import { useDispatch } from 'react-redux';
+import {useDispatch,useSelector} from "react-redux"
 import { USER_LOGOUT } from '../../utils/constants';
+import CurrentTab from '../../redux/reducers/SetCurrentTab';
 
 const useStyles = makeStyles((them) => ({
     root: {
@@ -23,14 +24,14 @@ export default function NavBar() {
     const navigate = useNavigate();
     const [cookies, setCookie, removeCookie] = useCookies(['user'])
     const dispatch = useDispatch();
-
+    const {currentTab} = useSelector(state=>state.currentTab);
     return (
         <div className={classes.root}>
             <AppBar position="absolute" style={{paddingTop: 0}}>
                 <Toolbar>
 
                     <Typography variant="h6" className={classes.title} onClick={() => navigate("/")}>
-                    Bug Tracker
+                    {currentTab}
                     </Typography>
 
                     <IconButton color="inherit" onClick={() => {
