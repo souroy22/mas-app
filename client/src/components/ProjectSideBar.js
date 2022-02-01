@@ -10,7 +10,7 @@ import MenuBookIcon from '@material-ui/icons/MenuBook';
 import { useForm } from 'react-hook-form';
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
-
+import { Stack } from '@mui/material';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -169,34 +169,47 @@ const ProjectSideBar = ({orientation, fetch}) => {
                     projects.map(v => (
                         ))
                     } */}
-                                
-                        <Grid item xs={10} onClick={drop} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
-                               <IconButton>
+                        <Stack direction="column" >
+                     
+                        <Grid item xs={10}  style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
+  
+                               <IconButton onClick={drop} >
                                <MenuBookIcon /> 
                                </IconButton>
+                            <Link to="/company/:id/Docs">
                             <Typography>Docs</Typography>
+                            </Link>                      
                         </Grid>
+                  
 
                         {projects ? <>
+                        <Link to="/company/:id/usecase">
                         <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
                                 <IconButton>
                                <MenuBookIcon /> 
                                </IconButton> 
                             <Typography>Use Case Documents</Typography>
                         </Grid>
+                        </Link>
+
+                        <Link to="/company/:id/Notes">
                         <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
                                 <IconButton>
                                <MenuBookIcon /> 
                                </IconButton> 
                             <Typography>Release Notes</Typography>
-                        </Grid></>: null}
+                        </Grid>
+                        </Link>
+                        </> : null}
 
+                        <Link to="/company/:id/Tasks">
                         <Grid item xs={10}  style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
                                <Typography>Tasks</Typography>
                         </Grid>
+                        </Link>
 
                        
                         <Link to="/company/:id/Bugs">
@@ -208,14 +221,16 @@ const ProjectSideBar = ({orientation, fetch}) => {
                             </Grid>
                         </Link>
                       
-    
-
+                       
+                        <Link to="/company/:id/Report">
                         <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
                             <Typography>Reports</Typography>
                         </Grid>
+                        </Link>
+                        </Stack>
   
             
             </Grid>

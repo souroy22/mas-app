@@ -1,5 +1,5 @@
 import { Box,Paper, Container, makeStyles, Backdrop, CircularProgress, FormControl, InputLabel, Select,MenuItem, Grid  } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux'
 import Toolbar from '../../components/Toolbar';
 import Page from '../../components/Page';
@@ -8,13 +8,10 @@ import api from '../../redux/api';
 import { handle } from '../../utils/helpers';
 import { useNavigate, useParams } from 'react-router';
 import { useCookies } from 'react-cookie';
-import { FormGroup, FormControlLabel, Checkbox, Typography } from '@material-ui/core';
-import TextField from '@mui/material/TextField';
+import { TextField, FormGroup, FormControlLabel, Checkbox, Typography } from '@material-ui/core';
 import Stack from '@mui/material/Stack';
 import ProjectSideBar from '../../components/ProjectSideBar';
 import Sidebar from '../../components/Sidebar';
-import axios from 'axios';
-// import { useHistory } from 'react-router-dom';
 
 
 const styles = {
@@ -42,33 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ProjectPageBugs = props => {
 
-    // const history = useHistory();
-
-    const [values, setValues] = React.useState({
-        name: "",
-        title: "",
-    });
-
-    const [getdata , setGetdata] = React.useState([]);
-
-    // const info = {
-    //     name: Name,
-    //     title: Title,
-    // }
-
-    // const PostData = async() => {
-    // await axios.post(``, info);
-    // history.push("/")
-    // }
     
-    useEffect(() => {
-    const GetData = async() => {   
-        const res = await axios.get(``);
-        setGetdata(res.data);
-    }
-    GetData();
-    },[])
-
     const [box, setBox] = React.useState(false);
 
     const pop = () => {
@@ -169,104 +140,9 @@ const ProjectPageBugs = props => {
                                 </Box>
                             </Container> */}
 
-<Container style={styles.Container} maxWidth="100%" className="cofbackground" >
-<Box sx={{
-    display: "flex",
-    flexDirection: "column",
-    height: 'max-content',
-    alignItems: "center",
-}} justifyContent="center">
-     
-        <Stack display="flex" direction="row" minWidth="80%" sx={{margin:"2% 0px"}} justifyContent="space-between">
-        <Typography variant="h5" >Notes</Typography>
-         <button className='btn btn-primary btn-gradient'
-            style={{
-                minWidth: "20%",
-                padding: '10px',
-                color: "white",
-                backgroundColor: "#1A66CA",
-                borderRadius: "5px"
-            }} onClick={pop} >Add Use</button>
-            </Stack>
-     
-     <Paper style={{minHeight:"70vh"}} >
-     <Stack style={{minHeight:"70vh",margin: "10px"}} >
-
-      <Typography>Name</Typography>   
-
-      {getdata.map((value) => {
-      return(
-          <>
-          <Typography>{value.name}</Typography>   
-          </>
-      )
-      })}
-
-     <hr></hr>
-     </Stack>
-
-     </Paper>
-
-</Box>
-{box ? <Paper style={{
-    minWidth:"100%" ,
-    minHeight:"80%" ,
-    position: "fixed",
-    top: '10%',
-    left: "0.5%",
-    borderRadius: '5px',
-    flexDirection: "column",
-    display: "flex",
-    padding: "4% 4%",
-}}>
-
-<Stack spacing={3} >
-<label><b>Name</b></label>
-<TextField
-value={values.name}
-name="name"
-id="name"
- />
-
-<label><b>Text Content</b></label>
-<TextField 
-value={values.title}
-name="title"
-id="title"
-multiline 
-sx={{marginBottom:"30px"}}
- rows={5} />        
-
-
-<Stack direction="row" >
-<button className='btn btn-primary btn-gradient'
-style={{
-borderRadius: "5px",
-minWidth: "30%",
-margin: "5px auto",
-padding: '10px',
-backgroundColor: "#1A66CA",
-color: "white"
-}}
-onClick={() => console.log(values)}>Submit</button>
-
-<button className='btn btn-gradient'
-style={{
-borderRadius: "5px",
-minWidth: "30%",
-margin: "5px auto",
-padding: '10px',
-}} onClick={popdown} >Cancel</button>
-</Stack>
-</Stack>
-</Paper>: null}
-</Container>
-
-
-
-
-
-
+                      <Container style={styles.Container} maxWidth="100%" className="cofbackground" >
+                      <Typography variant="h5" >Report</Typography>
+                      </Container>
 
                         </Page>
                     </Grid>

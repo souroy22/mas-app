@@ -12,7 +12,7 @@ const Bugs = ({bugs=[]}) => {
 
     const columns = [
         {field: 'id', title: 'ID'},
-        {field: 'harsh', title: 'Subject'},
+        {field: 'subject', title: 'Subject'},
         {field: 'assignee', title: 'Assignee'},
         {field: 'priority', title: 'Priority'},
         {field: 'due', title: 'Due Date'}

@@ -178,7 +178,7 @@ const ProjectPageBugs = props => {
 }} justifyContent="center">
      
         <Stack display="flex" direction="row" minWidth="80%" sx={{margin:"2% 0px"}} justifyContent="space-between">
-        <Typography variant="h5" >Notes</Typography>
+        <Typography variant="h5" >Use Case Documents</Typography>
          <button className='btn btn-primary btn-gradient'
             style={{
                 minWidth: "20%",
