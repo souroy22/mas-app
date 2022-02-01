@@ -1,0 +1,11 @@
+import React from 'react';
+
+function Report() {
+  return (
+  <>
+      <h1>This Report Page</h1>
+  </>
+  );
+}
+
+export default Report;
