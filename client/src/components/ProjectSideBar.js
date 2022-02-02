@@ -11,6 +11,11 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { Stack } from '@mui/material';
 import {useDispatch,useSelector} from "react-redux"
+import Popover from '@mui/material/Popover';
+
+
+
+
 
 const useStyles = makeStyles((theme) => ({
     drawer: {
@@ -26,6 +31,20 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const ProjectSideBar = ({orientation, fetch}) => {
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const uphandleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+  
+    const uphandleClose = () => {
+      setAnchorEl(null);
+    };
+  
+    const upopen = Boolean(anchorEl);
+    const id = upopen ? 'simple-popover' : undefined;
+
     const dispatch = useDispatch();
     const {currentTab} = useSelector(state=>state.currentTab);
     const classes = useStyles();
@@ -171,26 +190,49 @@ const ProjectSideBar = ({orientation, fetch}) => {
                     } */}
                         <Stack direction="column" >
                      
-                       {currentTab === "MANAGER" && <Grid item xs={10}  style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
+                       {currentTab === "MANAGER" && <Grid item xs={10} onClick={uphandleClick} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
   
-                               <IconButton onClick={drop} >
+                               <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
                             <Link to="/company/:id/Docs">
                             <Typography>Docs</Typography>
-                            </Link>                      
+                            </Link>           
+
+                            {/* <Button aria-describedby={id} variant="contained" > */}
+        {/* Open Popover
+      </Button> */}
+   
+        {/* <Typography sx={{ p: 2 }}>The content of the Popover.</Typography> */}
+               
                         </Grid>}
                   
+                        <Popover
+                            id={id}
+                            open={upopen}
+                            anchorEl={anchorEl}
+                            onClose={uphandleClose}
+                            anchorOrigin={{
+                              vertical: 'bottom',
+                              horizontal: 'left',
+                            }}
+                          >
 
-                        {projects ? <>
-                            {currentTab === "MANAGER" && <Link to="/company/:id/usecase">
+                      
+                            {currentTab === "MANAGER" && 
+                            
+               
+                            
+                            <Link to="/company/:id/usecase">
                         <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
                                 <IconButton>
                                <MenuBookIcon /> 
                                </IconButton> 
                             <Typography>Use Case Documents</Typography>
                         </Grid>
-                        </Link>}
+                        </Link>
+                  
+                        }
 
                         {currentTab === "MANAGER" &&    <Link to="/company/:id/Notes">
                        <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
@@ -200,7 +242,8 @@ const ProjectSideBar = ({orientation, fetch}) => {
                             <Typography>Release Notes</Typography>
                         </Grid>
                         </Link>}
-                        </> : null}
+            
+                        </Popover> 
 
                         {currentTab === "MANAGER" &&  <Link to="/company/:id/Tasks">
                         <Grid item xs={10}  style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
