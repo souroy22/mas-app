@@ -21,6 +21,7 @@ import Stack from '@mui/material/Stack'
 import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 
 const StyledBadge = withStyles((theme) => ({
@@ -126,14 +127,18 @@ export default function NavBar() {
                         <nav aria-label="secondary mailbox folders">
                             <List>
                                 <ListItem disablePadding>
+                                    <Link to="/company/:id/Subscription" onClick={show} >
                                     <ListItemButton>
-                                      <Typography variant='h6'>subscription type</Typography>
+                                      <Typography variant='h6' textDecoration="none" >subscription type</Typography>
                                     </ListItemButton>
+                                    </Link>
                                 </ListItem>
                                 <ListItem disablePadding>
+                                   <Link to="/company/:id/ReferAndEarn" onClick={show} >
                                     <ListItemButton component="a" href="#simple-list">
-                                    <Typography variant='h6'>refer and earn</Typography>
+                                    <Typography variant='h6' textDecoration="none" >refer and earn</Typography>
                                     </ListItemButton>
+                                    </Link>
                                 </ListItem>
                                 <ListItem disablePadding>
                                 <br></br>

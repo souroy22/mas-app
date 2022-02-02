@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { makeStyles,Drawer, Box, IconButton, Divider, Typography } from '@material-ui/core';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import SettingsIcon from '@material-ui/icons/Settings';
-import Link from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import {setCurrentTab} from "../redux/actions"
 import {useDispatch} from "react-redux"
@@ -75,7 +75,9 @@ const Sidebar = ({orientation}) => {
                     <Divider />
 
                     <IconButton>
+                        <Link to="/company/:id/Settings">
                         <SettingsIcon />
+                        </Link>
                     </IconButton>
                 </div>
             </Box>
