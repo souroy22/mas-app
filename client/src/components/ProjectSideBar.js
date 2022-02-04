@@ -22,11 +22,12 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 3,
         position: 'relative',
         flexShrink: 0,
-        width: 180
+        width: 100
     },
     toolbar: theme.mixins.toolbar,
     paper: {
-        width: 180,
+        width: 100,
+        overflow: "hidden",
     }
 }))
 
@@ -165,7 +166,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
 
             <Grid container justify="center" spacing={2}>
                 <Grid item xs={11}>
-                    <Grid container justify="space-between" alignItems="center">
+                    <Grid container justify="space-between" flexDirection="column" alignItems="center" style={{paddingTop: "50%", justifyContent: "center"}}>
                         <Grid item>
                             <Typography style={{fontSize: '18px'}} align="center">Projects</Typography>
                         </Grid>
@@ -190,12 +191,11 @@ const ProjectSideBar = ({orientation, fetch}) => {
                     } */}
                         <Stack direction="column" >
                      
-                       {currentTab === "MANAGER" && <Grid item xs={10} onClick={uphandleClick} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
-  
+                       {currentTab === "MANAGER" && <Grid item xs={10} onClick={uphandleClick} style={{display:"flex",flexDirection: "column", alignItems:"center", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
-                            <Link to="/company/:id/Docs">
+                               <Link to="/company/:id/Docs">
                             <Typography>Docs</Typography>
                             </Link>           
 
@@ -217,36 +217,9 @@ const ProjectSideBar = ({orientation, fetch}) => {
                               horizontal: 'left',
                             }}
                           >
-
-                      
-                            {currentTab === "MANAGER" && 
-                            
-               
-                            
-                            <Link to="/company/:id/usecase">
-                        <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
-                                <IconButton>
-                               <MenuBookIcon /> 
-                               </IconButton> 
-                            <Typography>Use Case Documents</Typography>
-                        </Grid>
-                        </Link>
-                  
-                        }
-
-                        {currentTab === "MANAGER" &&    <Link to="/company/:id/Notes">
-                       <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
-                                <IconButton>
-                               <MenuBookIcon /> 
-                               </IconButton> 
-                            <Typography>Release Notes</Typography>
-                        </Grid>
-                        </Link>}
-            
                         </Popover> 
-
                         {currentTab === "MANAGER" &&  <Link to="/company/:id/Tasks">
-                        <Grid item xs={10}  style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
+                        <Grid item xs={10}  style={{display:"flex",flexDirection: "column", alignItems:"center", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
@@ -256,7 +229,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
 
                        
                         {currentTab === "MANAGER" &&  <Link to="/company/:id/Bugs">
-                         <Grid item xs={10}  style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}>
+                         <Grid item xs={10}  style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}>
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
@@ -268,7 +241,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                          
 
                         {currentTab === "AUTOMATE" &&  <Link to="/company/:id/Report">
-                         <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
+                         <Grid item xs={10} style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
@@ -276,7 +249,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                         </Grid>
                         </Link>}
                         {currentTab === "AUTOMATE" &&  <Link to="/company/:id/Report">
-                         <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
+                         <Grid item xs={10} style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
@@ -284,7 +257,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                         </Grid>
                         </Link>}
                         {currentTab === "AUTOMATE" &&  <Link to="/company/:id/Report">
-                         <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
+                         <Grid item xs={10} style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
@@ -293,7 +266,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                         </Link>}
                        
                         {currentTab === "SUPPORT" &&  <Link to="/company/:id/">
-                         <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
+                         <Grid item xs={10} style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
@@ -301,7 +274,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                         </Grid>
                         </Link>}
                         {currentTab === "SUPPORT" &&  <Link to="/company/:id/">
-                         <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
+                         <Grid item xs={10} style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
@@ -309,7 +282,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                         </Grid>
                         </Link>}
                         <Link to="/company/:id/Report">
-                         <Grid item xs={10} style={{display:"flex", alignItems:"center", justifyContent:"flex-start"}}> 
+                         <Grid item xs={10} style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>

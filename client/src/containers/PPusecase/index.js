@@ -1,4 +1,4 @@
-import { Box,Paper, Container, makeStyles, Backdrop, CircularProgress, FormControl, InputLabel, Select,MenuItem, Grid  } from '@material-ui/core';
+import { Box,Paper, Container, makeStyles, Button, Grid  } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import Toolbar from '../../components/Toolbar';
@@ -48,11 +48,11 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Frozen yoghurt', 159, 6.0, 24),
+  createData('Ice cream sandwich', 237, 9.0, 37),
+  createData('Eclair', 262, 16.0, 24),
+  createData('Cupcake', 305, 3.7, 67),
+  createData('Gingerbread', 356, 16.0, 49),
 ];
 
 
@@ -229,14 +229,14 @@ const ProjectPageBugs = props => {
             </Stack>
      
             <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+      <Table sx={{ minWidth: 600 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+            <StyledTableCell>Name</StyledTableCell>
+            <StyledTableCell align="right">Title</StyledTableCell>
+            <StyledTableCell align="right">Edit</StyledTableCell>
+            <StyledTableCell align="right">Delete</StyledTableCell>
+            {/* <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -246,9 +246,8 @@ const ProjectPageBugs = props => {
                 {row.name}
               </StyledTableCell>
               <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
+              <StyledTableCell align="right"><Button>Edit</Button></StyledTableCell>
+              <StyledTableCell align="right"><Button>Delete</Button></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

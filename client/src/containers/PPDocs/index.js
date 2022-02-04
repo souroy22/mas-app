@@ -12,7 +12,7 @@ import { TextField, FormGroup, FormControlLabel, Checkbox, Typography } from '@m
 import Stack from '@mui/material/Stack';
 import ProjectSideBar from '../../components/ProjectSideBar';
 import Sidebar from '../../components/Sidebar';
-
+import Seconddrawer from '../../components/Seconddrawer';
 
 const styles = {
     Container: {
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.dark,
         minHeight: '100%',
         paddingTop: theme.spacing(3),
-        width: '100%',
+        width: '90%',
         paddingRight: theme.spacing.unit * 7
     },
     toolbar: theme.mixins.toolbar,
@@ -124,22 +124,12 @@ const ProjectPageBugs = props => {
                 <Grid item>
                     <ProjectSideBar fetch={fetchProjects} orientation="left" />
                 </Grid>
-
+                <Grid item>
+                <Seconddrawer fetch={fetchProjects} style={{position: "relative", left: "100px"}} orientation="center" />
+                </Grid>
                 <Grid item xs={10}>
                     <Grid container justify="flex-end">
                         <Page className={classes.root} title="Bugs">
-                            {/* <Backdrop style={{zIndex: 100, color: '#fff'}} open={loading}>
-                                <CircularProgress color="inherit" />
-                            </Backdrop> */}
-                            
-                            {/* <Container maxWidth={false}>
-                                <Toolbar fetch={fetchBugs} projects={projects} handleChange={handleChange} selected={selected} />
-
-                                <Box mt={3}>
-                                     <ReleaseNotes bugs={bugs} />
-                                </Box>
-                            </Container> */}
-
                       <Container style={styles.Container} maxWidth="100%" className="cofbackground" >
                       <Typography variant="h5" >Docs</Typography>
                       </Container>

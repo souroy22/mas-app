@@ -98,7 +98,7 @@ const ProjectPageBugs = props => {
 
             <Grid container justify="flex-start">
                 <Grid item>
-                    <ProjectSideBar fetch={fetchProjects} orientation="left" />
+                     <ProjectSideBar fetch={fetchProjects} orientation="left" /> 
                 </Grid>
 
                 <Grid item xs={10}>

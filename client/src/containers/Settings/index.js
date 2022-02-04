@@ -1,4 +1,4 @@
-import { Box,Paper, Container, makeStyles, Backdrop, CircularProgress, FormControl, InputLabel, Select,MenuItem, Grid  } from '@material-ui/core';
+import { Box,Paper,Button, Card, Container, makeStyles, Backdrop, CircularProgress, FormControl, InputLabel, Select,MenuItem, Grid  } from '@material-ui/core';
 import React from 'react';
 import { useSelector } from 'react-redux'
 import Toolbar from '../../components/Toolbar';
@@ -142,6 +142,24 @@ const ProjectPageBugs = props => {
 
                       <Container style={styles.Container} maxWidth="100%" className="cofbackground" >
                       <Typography variant="h5" >Settings</Typography>
+                      <Stack direction="row" >
+                          <Button>
+                          General Settings
+                          </Button>
+                          <Button>
+                          App Settings
+                          </Button>
+
+                          <Stack>
+                              <Card variant='outlined' >
+                           <p>hello world</p>
+                              </Card>
+                              <Card>
+                                  
+                                  </Card>
+                          </Stack>
+                      </Stack>
+
                       </Container>
 
                         </Page>
