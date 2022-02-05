@@ -12,6 +12,7 @@ import { TextField, FormGroup, FormControlLabel, Checkbox, Typography } from '@m
 import Stack from '@mui/material/Stack';
 import ProjectSideBar from '../../components/ProjectSideBar';
 import Sidebar from '../../components/Sidebar';
+import axios from 'axios';
 
 
 const styles = {
@@ -143,7 +144,6 @@ const HelpDocs = props => {
                       <Container style={styles.Container} maxWidth="100%" className="cofbackground" >
                       <Typography variant="h5" >Help Docs</Typography>
                       </Container>
-
 
                       
                         </Page>

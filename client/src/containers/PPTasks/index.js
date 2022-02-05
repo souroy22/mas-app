@@ -143,6 +143,9 @@ const ProjectPageBugs = props => {
                       <Container style={styles.Container} maxWidth="100%" className="cofbackground" >
                       <Typography variant="h5" >Tasks</Typography>
                       </Container>
+
+
+                      
                         </Page>
                     </Grid>
                 </Grid>

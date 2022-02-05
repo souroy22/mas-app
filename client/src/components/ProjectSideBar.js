@@ -206,7 +206,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                        {/* Open Popover
                        </Button> */}
                        {/* <Typography sx={{ p: 2 }}>The content of the Popover.</Typography> */}
-                       
+
                         </Grid>}
                   
                         <Popover
@@ -297,5 +297,6 @@ const ProjectSideBar = ({orientation, fetch}) => {
         </Drawer>
     )
 }
+
 
 export default ProjectSideBar;
