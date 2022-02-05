@@ -19,6 +19,39 @@ class ReleaseNoteController{
             res.json({message:error.message})
         }
     }
+
+    static deleteAllReleaseNoteData = async(req,res)=>{
+        try {
+            await ReleaseNoteModel.deleteMany();
+            res.json({data:"Deleeted Sucessfully"});
+        } catch (error) {
+            res.json({message:error.message})
+        }
+    }
+    static getSingleReleaseNoteData = async(req,res)=>{
+        try {
+            const getsingleReleaseNoteData = await ReleaseNoteModel.findOne();
+            res.json({data:getsingleReleaseNoteData});
+        } catch (error) {
+            res.json({message:error.message})
+        }
+    }
+    static deleteSingleReleaseNoteData = async(req,res)=>{
+        try {
+            await ReleaseNoteModel.findOne();
+            res.json({data:"Single Data Deleted"});
+        } catch (error) {
+            res.json({message:error.message})
+        }
+    }
+    static updateReleaseNoteData = async(req,res)=>{
+        try {
+            const updatedReleaseNoteData = await ReleaseNoteModel.findByIdAndUpdate(req.params.id,req.body);
+            res.json({data:updatedReleaseNoteData});
+        } catch (error) {
+            res.json({message:error.message})
+        }
+    }
 }
 
 module.exports = ReleaseNoteController;
