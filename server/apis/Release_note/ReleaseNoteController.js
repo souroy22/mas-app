@@ -38,7 +38,7 @@ class ReleaseNoteController{
     }
     static deleteSingleReleaseNoteData = async(req,res)=>{
         try {
-            await ReleaseNoteModel.findOne();
+            await ReleaseNoteModel.findByIdAndDelete(req.params.id);
             res.json({data:"Single Data Deleted"});
         } catch (error) {
             res.json({message:error.message})
@@ -46,7 +46,7 @@ class ReleaseNoteController{
     }
     static updateReleaseNoteData = async(req,res)=>{
         try {
-            const updatedReleaseNoteData = await ReleaseNoteModel.findByIdAndUpdate(req.params.id,req.body);
+            const updatedReleaseNoteData = await ReleaseNoteModel.findByIdAndUpdate(req.params.id,req.body,{new:true});
             res.json({data:updatedReleaseNoteData});
         } catch (error) {
             res.json({message:error.message})

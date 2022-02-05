@@ -11,7 +11,7 @@ ReleaseNoteRouter.route("/releasenote")
 
 ReleaseNoteRouter.route("/releasenote/:id")
 .get(ReleaseNoteController.getSingleReleaseNoteData)
-.update(ReleaseNoteController.updateReleaseNoteData)
+.put(ReleaseNoteController.updateReleaseNoteData)
 .delete(ReleaseNoteController.deleteSingleReleaseNoteData)
 
 module.exports = ReleaseNoteRouter;
