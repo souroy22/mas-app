@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -22,6 +22,7 @@ import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 const StyledBadge = withStyles((theme) => ({
@@ -46,6 +47,21 @@ const useStyles = makeStyles((them) => ({
 
 export default function NavBar() {
 
+    const [data, setData] = React.useState([]);
+
+  
+
+    // const GetData = async() => {
+    //     const req = await axios.get(`http://localhost:3000/users`);
+    //     setData(req.data.licenseInfo);
+    //     console.log(req);
+    //     }
+
+    // useEffect(() => {
+    // GetData();
+    // },[])
+
+
     const [hide, setHide] = React.useState(false);
 
     const show = () => {
@@ -61,6 +77,7 @@ export default function NavBar() {
     const [cookies, setCookie, removeCookie] = useCookies(['user'])
     const dispatch = useDispatch();
     const { currentTab } = useSelector(state => state.currentTab);
+
     return (
         <div className={classes.root}>
             <AppBar position="absolute" style={{ paddingTop: 0 }}>
@@ -69,14 +86,6 @@ export default function NavBar() {
                     <Typography variant="h6" className={classes.title} onClick={() => navigate("/")}>
                         {currentTab}
                     </Typography>
-
-                    {/* <IconButton color="inherit" onClick={() => {
-                        removeCookie('user')
-                        dispatch({type: USER_LOGOUT})
-                    }}> */}
-                    {/* <ExitToAppIcon />
-                    </IconButton> */}
-
 
                     <IconButton onClick={show} aria-label="Avatar">
                         <StyledBadge color="primary">
@@ -127,16 +136,37 @@ export default function NavBar() {
                         <nav aria-label="secondary mailbox folders">
                             <List>
                                 <ListItem disablePadding>
-                                    <Link to="/company/:id/Subscription" onClick={show} >
+                                    <Link to="/company/:id/HelpDocs" onClick={show} style={{
+                                       textDecoration: "none",
+                                       color: "black"
+                                   }}>
                                     <ListItemButton>
-                                      <Typography variant='h6' textDecoration="none" >subscription type</Typography>
+                                      <Typography variant='h6' textDecoration="none" >Help Docs</Typography>
                                     </ListItemButton>
                                     </Link>
                                 </ListItem>
                                 <ListItem disablePadding>
-                                   <Link to="/company/:id/ReferAndEarn" onClick={show} >
+
+                                    <ListItemButton>
+                                      <Typography variant='h6' textDecoration="none" >Contact Us</Typography>
+                                    </ListItemButton>
+
+                                    <ListItem>
+                                    <ListItemButton>
+                                      <Typography variant='h6' textDecoration="none" >
+
+                                      </Typography>
+                                    </ListItemButton>
+                                    </ListItem>
+     
+                                </ListItem>
+                                <ListItem disablePadding>
+                                   <Link to="/company/:id/ReferAndEarn" onClick={show} style={{
+                                       textDecoration: "none",
+                                       color: "black"
+                                   }} >
                                     <ListItemButton component="a" href="#simple-list">
-                                    <Typography variant='h6' textDecoration="none" >refer and earn</Typography>
+                                    <Typography variant='h6' textDecoration="none" >Refer and Earn</Typography>
                                     </ListItemButton>
                                     </Link>
                                 </ListItem>
@@ -148,7 +178,7 @@ export default function NavBar() {
                                     removeCookie('user')
                                     dispatch({type: USER_LOGOUT})
                                 }}
-                                variant='secondry' style={{backgroundColor: "#0047AB",color: "white"}} >Log out</Button>
+                                variant='secondry' onClick={show}  style={{backgroundColor: "#0047AB",color: "white"}} >Log out</Button>
                                 </ListItem>
                             </List>
                         </nav>

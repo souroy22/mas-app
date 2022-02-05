@@ -1,4 +1,4 @@
-import React,{ useContext, useState } from 'react';
+import React,{ useState } from 'react';
 import { makeStyles,Drawer, Divider, IconButton, Grid, Typography, Dialog, DialogTitle, TextField, Button } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import AddIcon from '@material-ui/icons/Add';
@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import { Stack } from '@mui/material';
 import {useDispatch,useSelector} from "react-redux"
 import Popover from '@mui/material/Popover';
-
+import PPDocs from '../containers/PPDocs';
 
 
 
@@ -33,11 +33,11 @@ const useStyles = makeStyles((theme) => ({
 
 const ProjectSideBar = ({orientation, fetch}) => {
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+     const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const uphandleClick = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
+     const uphandleClick = (event) => {
+       setAnchorEl(event.currentTarget);
+     };
   
     const uphandleClose = () => {
       setAnchorEl(null);
@@ -51,11 +51,13 @@ const ProjectSideBar = ({orientation, fetch}) => {
     const classes = useStyles();
     const params = useParams();
     const [cookies] = useCookies(['user']);
+
     // const [projects, setProjects] = React.useState([
     //     {projectName: "Docs"},
     //     {projectName: "Tasks"},
     //     {projectName: "Bugs"},
     // ]);
+
     const [projects, setProjects] = React.useState(true);
     const drop = () => {
         setProjects(!projects);
@@ -189,22 +191,22 @@ const ProjectSideBar = ({orientation, fetch}) => {
                     projects.map(v => (
                         ))
                     } */}
+
                         <Stack direction="column" >
                      
-                       {currentTab === "MANAGER" && <Grid item xs={10} onClick={uphandleClick} style={{display:"flex",flexDirection: "column", alignItems:"center", justifyContent:"flex-start"}}> 
+                       {currentTab === "MANAGER" && <Grid item xs={10} style={{display:"flex",flexDirection: "column", alignItems:"center", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
                                <Link to="/company/:id/Docs">
                             <Typography>Docs</Typography>
-                            </Link>           
+                            </Link>            
 
-                            {/* <Button aria-describedby={id} variant="contained" > */}
-        {/* Open Popover
-      </Button> */}
-   
-        {/* <Typography sx={{ p: 2 }}>The content of the Popover.</Typography> */}
-               
+                       {/* <Button aria-describedby={id} variant="contained" > */}
+                       {/* Open Popover
+                       </Button> */}
+                       {/* <Typography sx={{ p: 2 }}>The content of the Popover.</Typography> */}
+                       
                         </Grid>}
                   
                         <Popover
@@ -217,6 +219,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                               horizontal: 'left',
                             }}
                           >
+
                         </Popover> 
                         {currentTab === "MANAGER" &&  <Link to="/company/:id/Tasks">
                         <Grid item xs={10}  style={{display:"flex",flexDirection: "column", alignItems:"center", justifyContent:"flex-start"}}> 
@@ -236,7 +239,6 @@ const ProjectSideBar = ({orientation, fetch}) => {
                             <Typography>Bugs</Typography>
                             </Grid>
                         </Link>}
-                      
                        
                          
 
@@ -291,7 +293,6 @@ const ProjectSideBar = ({orientation, fetch}) => {
                         </Link>
                         </Stack>
   
-            
             </Grid>
         </Drawer>
     )

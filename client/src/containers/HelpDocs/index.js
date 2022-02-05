@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
 }))
 
-const ProjectPageBugs = props => {
+const HelpDocs = props => {
 
     
     const [box, setBox] = React.useState(false);
@@ -141,7 +141,7 @@ const ProjectPageBugs = props => {
                             </Container> */}
 
                       <Container style={styles.Container} maxWidth="100%" className="cofbackground" >
-                      <Typography variant="h5" >Subscription</Typography>
+                      <Typography variant="h5" >Help Docs</Typography>
                       </Container>
 
 
@@ -158,4 +158,4 @@ const ProjectPageBugs = props => {
     )   
 }
 
-export default ProjectPageBugs;
+export default HelpDocs;

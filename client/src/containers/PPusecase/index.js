@@ -100,11 +100,12 @@ const ProjectPageBugs = props => {
     // history.push("/")
     // }
     
+    
     useEffect(() => {
-    const GetData = async() => {   
-        const res = await axios.get(``);
-        setGetdata(res.data);
-    }
+        const GetData = async() => {   
+            const res = await axios.get(``);
+            setGetdata(res.data);
+        }
     GetData();
     },[])
 

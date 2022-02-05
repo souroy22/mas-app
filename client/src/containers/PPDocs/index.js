@@ -14,6 +14,8 @@ import ProjectSideBar from '../../components/ProjectSideBar';
 import Sidebar from '../../components/Sidebar';
 import Seconddrawer from '../../components/Seconddrawer';
 
+
+
 const styles = {
     Container: {
         backdropFilter: 'blur(40px)',
@@ -26,19 +28,20 @@ const styles = {
     },
 }
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: theme.palette.background.dark,
         minHeight: '100%',
         paddingTop: theme.spacing(3),
-        width: '90%',
+        width: '100%',
         paddingRight: theme.spacing.unit * 7
     },
     toolbar: theme.mixins.toolbar,
 }))
 
-const ProjectPageBugs = props => {
 
+const ProjectPageBugs = props => {
     
     const [box, setBox] = React.useState(false);
 
@@ -124,10 +127,10 @@ const ProjectPageBugs = props => {
                 <Grid item>
                     <ProjectSideBar fetch={fetchProjects} orientation="left" />
                 </Grid>
-                <Grid item>
-                <Seconddrawer fetch={fetchProjects} style={{position: "relative", left: "100px"}} orientation="center" />
-                </Grid>
                 <Grid item xs={10}>
+                <Grid item>
+                <Seconddrawer fetch={fetchProjects} orientation="center" />
+                </Grid>
                     <Grid container justify="flex-end">
                         <Page className={classes.root} title="Bugs">
                       <Container style={styles.Container} maxWidth="100%" className="cofbackground" >
