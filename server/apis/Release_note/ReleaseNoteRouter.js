@@ -4,7 +4,7 @@ const ReleaseNoteRouter = express.Router();
 const ReleaseNoteController = require("./ReleaseNoteController")
 
 
-useCaseDocumentRouter.route("/releasenote")
+ReleaseNoteRouter.route("/releasenote")
 .post(ReleaseNoteController.postReleaseNoteData)
 .get(ReleaseNoteController.getAllReleaseNoteData)
 
