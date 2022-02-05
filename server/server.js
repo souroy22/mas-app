@@ -5,6 +5,7 @@ const cors = require('cors');
 const jwt = require('_helpers/jwt');
 const errorHandler = require('_helpers/error-handler');
 const useCaseDocumentRouter = require("./apis/Use_case_document/UseCaseRouter")
+const ReleaseNoteRouter = require("./apis/Release_note/ReleaseNoteRouter")
 app.use(express.urlencoded({extended: true}));
 app.use(express.json()) // To parse the incoming requests with JSON payloads
 app.use(cors());
@@ -19,6 +20,7 @@ app.use('/company', require('./apis/company/company.controller'));
 app.use('/project', require('./apis/project/project.controller'));
 app.use('/tests',require('./apis/testScripts/testScripts.model'));
 app.use("/",useCaseDocumentRouter)
+app.use("/",ReleaseNoteRouter)
 
 // global error handler
 app.use(errorHandler);
