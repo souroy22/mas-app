@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const ReleaseNoteSchema =  new mongoose.Schema({
-    ReleaseNoteName:{type:String},
-    ReleaseNoteContent:{type:String},
+    releaseNoteName:{type:String},
+    releaseNoteContent:{type:String},
     date:{type:Date,default:Date.now()}
 });
 

@@ -1,7 +1,8 @@
 import { Box, Paper, Container, makeStyles, Button, Grid } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux'
 import Toolbar from '../../components/Toolbar';
+import Modal from '@mui/material/Modal';
 import Page from '../../components/Page';
 import ReleaseNotes from '../../components/ReleaseNotes';
 import api from '../../redux/api';
@@ -23,6 +24,21 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
 
+
+
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    pt: 2,
+    px: 4,
+    pb: 3,
+};
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -69,43 +85,69 @@ const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
 }))
 
+
+
 const ProjectPageBugs = props => {
 
-   const config = {
-    headers: {
-        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MWU1YTBhY2UwMWZkMzBlYzBiMGZjMjUiLCJpYXQiOjE2NDM2MDgwOTEsImV4cCI6MTY0NDIxMjg5MX0.evZcAfui0o2N4zPBhGK5iuRNQet_FrKO2hVfEzG6SiM` 
-      }
-   }
 
-    const handleChange2 = (e) => {
-        const { name, value } = e.target;
-        setGetdata((prev) => {
-            return {
-                ...prev,
-                [name]: value,
-            }
-        })
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+
+    const config = {
+        headers: {
+            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MWU1YTBhY2UwMWZkMzBlYzBiMGZjMjUiLCJpYXQiOjE2NDM2MDgwOTEsImV4cCI6MTY0NDIxMjg5MX0.evZcAfui0o2N4zPBhGK5iuRNQet_FrKO2hVfEzG6SiM`
+        }
     }
+
+    const handleChange2 = (name, value) => {
+        if (name === 'releaseNoteName') {
+            setReleaseNoteName(value)
+        }
+        else if (name === 'releaseNoteContent') {
+            setReleaseNoteContent(value)
+        }
+    }
+
 
     const [getdata, setGetdata] = React.useState([]);
 
-    const [name, setName] = React.useState("")
-    const [title, setTitle] = React.useState("")
+    const [releaseNoteName, setReleaseNoteName] = React.useState("")
+    const [releaseNoteContent, setReleaseNoteContent] = React.useState("")
+
 
     const info = {
-        name: name,
-        title: title,
+        releaseNoteName: releaseNoteName,
+        releaseNoteContent: releaseNoteContent,
+    }
+
+    const PutData = async () => {
+    const res = await axios.put('https://httpbin.org/put', info, config);
     }
 
     const PostData = async () => {
-        await axios.post(`http://localhost:3000/releasenote`, info , config)
-        navigate("/");
+        await axios.post(`http://localhost:3000/releasenote`, info, config);
+        setBox(false);
+        GetData();
+        setGetdata([]);
+    }
+
+    const Ondelete = async (_id) => {
+        console.log(_id)
+        var zex = await axios.delete(`http://localhost:3000/releasenote/${_id}`, config);
+        console.log(zex)
+        GetData();
     }
 
     const GetData = async () => {
         const res = await axios.get(`http://localhost:3000/releasenote`, config);
-        // setGetdata(res.data);
-        console.log(res)
+        setGetdata(res.data.data);
+        console.log(res);
     }
 
     useEffect(() => {
@@ -243,16 +285,73 @@ const ProjectPageBugs = props => {
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
+
+
                                                 {getdata.map((value) => {
                                                     return (
                                                         <>
-                                                            <StyledTableRow>
+                                                            <StyledTableRow key={value._id}  >
                                                                 <StyledTableCell component="th" scope="row">
-                                                                    {value.name}
+                                                                    {value.releaseNoteName}
                                                                 </StyledTableCell>
-                                                                <StyledTableCell align="right">{value.title}</StyledTableCell>
-                                                                <StyledTableCell align="right"><Button>Edit</Button></StyledTableCell>
-                                                                <StyledTableCell align="right"><Button>Delete</Button></StyledTableCell>
+                                                                <StyledTableCell align="right">{value.releaseNoteContent}</StyledTableCell>
+                                                                <StyledTableCell align="right"><Button onClick={handleOpen} >Edit</Button></StyledTableCell>
+                                                                <Modal
+                                                                    open={open}
+                                                                    onClose={handleClose}
+                                                                    aria-labelledby="parent-modal-title"
+                                                                    key={value._id}
+                                                                    aria-describedby="parent-modal-description"
+                                                                >
+                                                                    <Paper style={{ ...style, minWidth: "80%", borderRadius: "25px", border: "none", minHeight: "70%", padding: "5% 5%" }}>
+                                                                        <Stack spacing={3} >
+                                                                            <label><b>Name</b></label>
+                                                                            <TextField
+                                                                                value={value._id}
+                                                                                name="releaseNoteName"
+                                                                                id="releaseNoteName"
+                                                                                onChange={(e) => handleChange2('releaseNoteName', e.target.value)}
+                                                                            />
+
+                                                                            <label><b>Text Content</b></label>
+                                                                            <TextField
+                                                                                value={releaseNoteContent}
+                                                                                name="releaseNoteContent"
+                                                                                id="releaseNoteContent"
+                                                                                key={value._id} 
+                                                                                onChange={(e) => handleChange2('releaseNoteContent', e.target.value)}
+                                                                                multiline
+                                                                                sx={{ marginBottom: "30px" }}
+                                                                                rows={5} />
+
+
+                                                                            <Stack direction="row"  justifyContent="space-between">
+                                                                                <button className='btn btn-primary btn-gradient'
+                                                                                    style={{
+                                                                                        borderRadius: "5px",
+                                                                                        minWidth: "30%",
+                                                                                        margin: "5px auto",
+                                                                                        padding: '10px',
+                                                                                        backgroundColor: "#1A66CA",
+                                                                                        color: "white"
+                                                                                    }}
+                                                                                    onClick={PutData}
+                                                                                >Submit</button>
+
+                                                                                <button className='btn btn-gradient'
+                                                                                    style={{
+                                                                                        borderRadius: "5px",
+                                                                                        minWidth: "30%",
+                                                                                        margin: "5px auto",
+                                                                                        padding: '10px',
+                                                                                    }}   onClose={handleClose} >Cancel</button>
+                                                                            </Stack>
+                                                                            </Stack>
+                                                                    </Paper>
+                                                                </Modal>
+                                                                <StyledTableCell align="right">
+                                                                    <Button onClick={() => Ondelete(value._id)} >Delete</Button>
+                                                                </StyledTableCell>
                                                             </StyledTableRow>
                                                         </>
                                                     )
@@ -276,18 +375,18 @@ const ProjectPageBugs = props => {
                                     <Stack spacing={3} >
                                         <label><b>Name</b></label>
                                         <TextField
-                                            value={name}
-                                            name="name"
-                                            id="name"
-                                            onChange={handleChange2}
+                                            value={releaseNoteName}
+                                            name="releaseNoteName"
+                                            id="releaseNoteName"
+                                            onChange={(e) => handleChange2('releaseNoteName', e.target.value)}
                                         />
 
                                         <label><b>Text Content</b></label>
                                         <TextField
-                                            value={title}
-                                            name="title"
-                                            id="title"
-                                            onChange={handleChange2}
+                                            value={releaseNoteContent}
+                                            name="releaseNoteContent"
+                                            id="releaseNoteContent"
+                                            onChange={(e) => handleChange2('releaseNoteContent', e.target.value)}
                                             multiline
                                             sx={{ marginBottom: "30px" }}
                                             rows={5} />

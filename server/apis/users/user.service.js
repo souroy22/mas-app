@@ -22,6 +22,7 @@ async function authenticate({ username, password }) {
             token
         };
     }
+    console.log(user)
 }
 
 async function getAll() {
