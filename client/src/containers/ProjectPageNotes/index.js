@@ -130,9 +130,15 @@ const ProjectPageBugs = props => {
         releaseNoteContent: releaseNoteContent,
     }
 
-    const PutData = async () => {
-    const res = await axios.patch('https://httpbin.org/put', info, config);
+    const details = {
+        releaseNoteName: releaseNoteName,
+        releaseNoteContent: releaseNoteContent,
+    }
+
+    const PutData = async (_id) => {
+    const res = await axios.put(`http://localhost:3000/releasenote/${_id}`, details, config);
     GetData();
+    handleClose();
     }
 
     const PostData = async () => {
@@ -305,8 +311,8 @@ const ProjectPageBugs = props => {
 
                                                                 </StyledTableCell>
                                                                 <StyledTableCell align="right">{value.releaseNoteContent}</StyledTableCell>
-                                                                <StyledTableCell align="right"><Button onClick={handleOpen} >Edit</Button></StyledTableCell>
-                                                                <Modal
+                                                                <StyledTableCell align="right"><Button onClick={() => handleOpen(value._id)} >Edit</Button></StyledTableCell>
+                                                               {open === true ? <Modal
                                                                     open={open}
                                                                     Backdrop={0}
                                                                     onClose={handleClose}
@@ -318,12 +324,11 @@ const ProjectPageBugs = props => {
                                                                         <Stack spacing={3} >
                                                                             <label><b>Name</b></label>
                                                                             <TextField
-                                                                                value={value._id}
+                                                                                value={releaseNoteName}
                                                                                 name="releaseNoteName"
                                                                                 id="releaseNoteName"
                                                                                 onChange={(e) => handleChange2('releaseNoteName', e.target.value)}
                                                                             />
-
                                                                             <label><b>Text Content</b></label>
                                                                             <TextField
                                                                                 value={releaseNoteContent}
@@ -346,7 +351,7 @@ const ProjectPageBugs = props => {
                                                                                         backgroundColor: "#1A66CA",
                                                                                         color: "white"
                                                                                     }}
-                                                                                    onClick={PutData}
+                                                                                    onClick={() => PutData(value._id)}
                                                                                 >Submit</button>
 
                                                                                 <button className='btn btn-gradient'
@@ -355,11 +360,11 @@ const ProjectPageBugs = props => {
                                                                                         minWidth: "30%",
                                                                                         margin: "5px auto",
                                                                                         padding: '10px',
-                                                                                    }}   onClose={handleClose} >Cancel</button>
+                                                                                    }}   onClick={handleClose} >Cancel</button>
                                                                             </Stack>
                                                                             </Stack>
                                                                     </Paper>
-                                                                </Modal>
+                                                                </Modal>: null}
                                                                 <StyledTableCell align="right">
                                                                     <Button onClick={() => Ondelete(value._id)} >Delete</Button>
                                                                 </StyledTableCell>

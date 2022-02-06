@@ -1,4 +1,4 @@
-import { Box, Paper, Button, Card, Container, makeStyles, Backdrop, CircularProgress, FormControl, InputLabel, Select, MenuItem, Grid } from '@material-ui/core';
+import { Box,Paper, Container, makeStyles, Backdrop, CircularProgress, FormControl, InputLabel, Select,MenuItem, Grid  } from '@material-ui/core';
 import React from 'react';
 import { useSelector } from 'react-redux'
 import Toolbar from '../../components/Toolbar';
@@ -12,47 +12,11 @@ import { TextField, FormGroup, FormControlLabel, Checkbox, Typography } from '@m
 import Stack from '@mui/material/Stack';
 import ProjectSideBar from '../../components/ProjectSideBar';
 import Sidebar from '../../components/Sidebar';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-// import Typography from '@mui/material/Typography';
-// import Box from '@mui/material/Box';
+import Seconddrawer from '../../components/Seconddrawer';
+import { FirstName } from '.';
 
 
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-  
-    return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-        {...other}
-      >
-        {value === index && (
-          <Box sx={{ p: 3 }}>
-            <Typography>{children}</Typography>
-          </Box>
-        )}
-      </div>
-    );
-  }
-  
-  TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired,
-  };
-  
-  function a11yProps(index) {
-    return {
-      id: `simple-tab-${index}`,
-      'aria-controls': `simple-tabpanel-${index}`,
-    };
-  }
 
-  
 const styles = {
     Container: {
         backdropFilter: 'blur(40px)',
@@ -65,6 +29,7 @@ const styles = {
     },
 }
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: theme.palette.background.dark,
@@ -76,15 +41,11 @@ const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
 }))
 
+
 const ProjectPageBugs = props => {
 
-      
-    const [value, setValue] = React.useState(0);
-  
-    const handle2Change = (event, newValue) => {
-      setValue(newValue);
-    };
-
+    const firstname = React.useContext(FirstName);
+    
     const [box, setBox] = React.useState(false);
 
     const pop = () => {
@@ -96,10 +57,10 @@ const ProjectPageBugs = props => {
     }
 
     const classes = useStyles()
-
+   
     const [on, setOn] = React.useState(false);
-
-    const onclk = () => {
+    
+    const onclk = ( ) => {
         setOn(!on);
     }
 
@@ -116,8 +77,8 @@ const ProjectPageBugs = props => {
             const config = {
                 headers: { Authorization: `Bearer ${cookies.user.token}` }
             }
-
-            const [result, error] = await handle(api.get(`/project/${params.id}`, config))
+    
+            const [result,error] = await handle(api.get(`/project/${params.id}`, config))
 
             if (!error) {
                 const projects = result.data
@@ -132,9 +93,9 @@ const ProjectPageBugs = props => {
                 const config = {
                     headers: { Authorization: `Bearer ${cookies.user.token}` }
                 }
-
-                const [result, error] = await handle(api.get(`/bugs/${projects[selected].id}`, config))
-
+        
+                const [result,error] = await handle(api.get(`/bugs/${projects[selected].id}`, config))
+    
                 if (!error) {
                     const bugs = result.data
                     setBugs(bugs)
@@ -150,7 +111,7 @@ const ProjectPageBugs = props => {
     const handleChange = event => {
         setSelected(event.target.value)
     }
-
+    
     React.useEffect(() => {
         fetchProjects()
     }, [params])
@@ -162,48 +123,19 @@ const ProjectPageBugs = props => {
     }, [user])
 
     return (
-        <div style={{ width: '100%' }}>
+        <div style={{width: '100%'}}>
             <div className={classes.toolbar} />
 
             <Grid container justify="flex-start">
                 <Grid item>
                     <ProjectSideBar fetch={fetchProjects} orientation="left" />
                 </Grid>
-
                 <Grid item xs={10}>
                     <Grid container justify="flex-end">
                         <Page className={classes.root} title="Bugs">
-                            {/* <Backdrop style={{zIndex: 100, color: '#fff'}} open={loading}>
-                                <CircularProgress color="inherit" />
-                            </Backdrop> */}
-
-                            {/* <Container maxWidth={false}>
-                                <Toolbar fetch={fetchBugs} projects={projects} handleChange={handleChange} selected={selected} />
-
-                                <Box mt={3}>
-                                     <ReleaseNotes bugs={bugs} />
-                                </Box>
-                            </Container> */}
-
-                            <Container style={styles.Container} maxWidth="100%" className="cofbackground" >
-                                <Typography variant="h5" >Settings</Typography>
-                                <Box sx={{ width: '100%' }}>
-                                    <Box style={{ borderBottom: 1, borderColor: 'divider', border: "2px solid back", minWidth: "100%" , margin: "2% 0px", display: "flex" , justifyContent: "space-around"}}>
-                                        <Tabs value={value} onChange={handle2Change} aria-label="basic tabs example">                                    
-                                            <Tab label="Item One" {...a11yProps(0)} />
-                                            <Tab label="Item Two" {...a11yProps(1)} />                                     
-                                        </Tabs>
-                                    </Box>
-                                    <TabPanel value={value} index={0}>
-                                    Item One
-                                    </TabPanel>
-                                    <TabPanel value={value} index={1}>
-                                    Item Two
-                                    </TabPanel>
-                                </Box>
-
-                            </Container>
-
+                      <Container style={styles.Container} maxWidth="100%" className="cofbackground" >
+                      <Typography variant="h5" >Title: {firstname} </Typography>
+                      </Container>
                         </Page>
                     </Grid>
                 </Grid>
@@ -213,7 +145,7 @@ const ProjectPageBugs = props => {
                 </Grid>
             </Grid>
         </div>
-    )
+    )   
 }
 
 export default ProjectPageBugs;

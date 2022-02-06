@@ -11,6 +11,7 @@ import PPusecase from './PPusecase';
 import ProjectPageBugs from './ProjectPageBugs';
 import ProjectPageNotes from './ProjectPageNotes/index';
 import Title from './ProjectPageNotes/Title';
+import USETitle from './PPusecase/USETitle';
 import BugDetail from './BugDetail';
 import { makeStyles } from '@material-ui/core';
 import { Routes, Route } from 'react-router-dom';
@@ -58,6 +59,7 @@ const App = () => {
                 <PrivateRoute path="/company/:id/Settings" exact element={<Settings />} /> 
                 <PrivateRoute path="/company/:id/Bugs" exact element={<ProjectPageBugs />} /> 
                 <PrivateRoute path="/company/:id/Notes" exact element={<ProjectPageNotes />} /> 
+                <PrivateRoute path="/company/:id/usecase/Title" exact element={<USETitle />} /> 
                 <PrivateRoute path="/company/:id/Notes/Title" exact element={<Title />} /> 
                 <Route path="/tests/" exact element={<Tests />} />
             </Routes>
