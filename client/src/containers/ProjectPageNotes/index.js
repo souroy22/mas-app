@@ -1,5 +1,5 @@
 import { Box, Paper, Container, makeStyles, Button, Grid } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux'
 import Toolbar from '../../components/Toolbar';
 import Modal from '@mui/material/Modal';
@@ -22,10 +22,14 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { Link } from 'react-router-dom';
+import Title from './Title';
 
 
 
 
+
+const FirstName = React.createContext();
 
 const style = {
     position: 'absolute',
@@ -35,11 +39,11 @@ const style = {
     width: 400,
     bgcolor: 'background.paper',
     border: '2px solid #000',
+    boxShadow: 24,
     pt: 2,
     px: 4,
     pb: 3,
-};
-
+  };
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -127,14 +131,14 @@ const ProjectPageBugs = props => {
     }
 
     const PutData = async () => {
-    const res = await axios.put('https://httpbin.org/put', info, config);
+    const res = await axios.patch('https://httpbin.org/put', info, config);
+    GetData();
     }
 
     const PostData = async () => {
         await axios.post(`http://localhost:3000/releasenote`, info, config);
         setBox(false);
         GetData();
-        setGetdata([]);
     }
 
     const Ondelete = async (_id) => {
@@ -231,6 +235,7 @@ const ProjectPageBugs = props => {
     }, [user])
 
     return (
+        <FirstName.Provider value={"hello world context api"} >
         <div style={{ width: '100%' }}>
             <div className={classes.toolbar} />
 
@@ -291,18 +296,24 @@ const ProjectPageBugs = props => {
                                                     return (
                                                         <>
                                                             <StyledTableRow key={value._id}  >
+                                                              
                                                                 <StyledTableCell component="th" scope="row">
+                                                                <Link to="/company/:id/Notes/Title" >
+
                                                                     {value.releaseNoteName}
+                                                                    </Link>
+
                                                                 </StyledTableCell>
                                                                 <StyledTableCell align="right">{value.releaseNoteContent}</StyledTableCell>
                                                                 <StyledTableCell align="right"><Button onClick={handleOpen} >Edit</Button></StyledTableCell>
                                                                 <Modal
                                                                     open={open}
+                                                                    Backdrop={0}
                                                                     onClose={handleClose}
                                                                     aria-labelledby="parent-modal-title"
                                                                     key={value._id}
                                                                     aria-describedby="parent-modal-description"
-                                                                >
+                                                                    >
                                                                     <Paper style={{ ...style, minWidth: "80%", borderRadius: "25px", border: "none", minHeight: "70%", padding: "5% 5%" }}>
                                                                         <Stack spacing={3} >
                                                                             <label><b>Name</b></label>
@@ -426,7 +437,9 @@ const ProjectPageBugs = props => {
                 </Grid>
             </Grid>
         </div>
+        </FirstName.Provider>
     )
 }
 
 export default ProjectPageBugs;
+export {FirstName};
