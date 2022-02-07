@@ -23,7 +23,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Link } from 'react-router-dom';
-import Title from './USETitle';
+import USETitle from './USETitle';
 
 
 
@@ -305,8 +305,8 @@ const ProjectPageBugs = props => {
                                                             <StyledTableRow key={value._id}  >
                                                               
                                                                 <StyledTableCell component="th" scope="row">
+                                                                    
                                                                 <Link to="/company/:id/usecase/Title" >
-
                                                                     {value.useCaseDocumentName}
                                                                     </Link>
 

@@ -13,7 +13,7 @@ import Stack from '@mui/material/Stack';
 import ProjectSideBar from '../../components/ProjectSideBar';
 import Sidebar from '../../components/Sidebar';
 import Seconddrawer from '../../components/Seconddrawer';
-
+import '../../components/side.css';
 
 
 const styles = {

@@ -4,8 +4,9 @@ import { makeStyles,Drawer, Box, IconButton, Divider, Typography } from '@materi
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { Link } from "react-router-dom";
-import {setCurrentTab} from "../redux/actions"
-import {useDispatch} from "react-redux"
+import {setCurrentTab} from "../redux/actions";
+import {useDispatch} from "react-redux";
+import './side.css';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         background: '#eeeeee',
-        padding:"0px 2%",
+        minWidth: "10%"
     }
 }))
 
@@ -35,23 +36,23 @@ const Seconddrawer = ({orientation}) => {
         <Drawer classes={{ paper: classes.paper }} variant="permanent" anchor={orientation} style={{zIndex: 3, position: 'relative', flexShrink: 0}}>
             <div className={classes.toolbar} />
 
-            <Box flexDirection="column" justifyContent="flex-end">
+            <Box flexDirection="column" justifyContent="flex-end" >
        
-            <Link to="/company/:id/usecase">
+            <Link to="/company/:id/usecase" className='minbox2 mintext' >
                   <IconButton>
                   <MenuBookIcon /> 
                 </IconButton>
-                  <Typography style={{maxWidth: "fit-content"}} onClick={()=>dispatch(setCurrentTab("MANAGER"))}>Use Case Documents</Typography>
+                  <Typography style={{maxWidth: "fit-content",fontFamily: "arial",fontSize: "small"}} onClick={()=>dispatch(setCurrentTab("MANAGER"))}>Use Case Documents</Typography>
             </Link>
 
 
                 <Divider />
 
-                <Link to="/company/:id/Notes">
+                <Link to="/company/:id/Notes" className='minbox2 mintext' >
                   <IconButton>
                     <MenuBookIcon /> 
                 </IconButton>
-                      <Typography style={{maxWidth: "fit-content"}}onClick={()=>dispatch(setCurrentTab("SUPPORT"))}>Release Notes</Typography>
+                      <Typography style={{maxWidth: "fit-content",fontFamily: "arial",fontSize: "small"}}onClick={()=>dispatch(setCurrentTab("SUPPORT"))}>Release Notes</Typography>
                 </Link>
                 <Divider />
             </Box>
