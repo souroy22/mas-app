@@ -23,6 +23,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Modal from '@mui/material/Modal';
 
 
 const StyledBadge = withStyles((theme) => ({
@@ -41,15 +42,27 @@ const useStyles = makeStyles((them) => ({
         zIndex: 4
     },
     title: {
-        flexGrow: 1
+        flexGrow: 1,
+        fontFamily: "arial"
     }
 }))
 
 export default function NavBar() {
 
+    
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+    };
+     const handleClose = () => {
+         setOpen(false);
+     };
+
+
     const [data, setData] = React.useState([]);
 
-  
+
 
     // const GetData = async() => {
     //     const req = await axios.get(`http://localhost:3000/users`);
@@ -62,15 +75,7 @@ export default function NavBar() {
     // },[])
 
 
-    const [hide, setHide] = React.useState(false);
-
-    const show = () => {
-        setHide(!hide);
-    }
-
-    const handleClose = () => {
-        setHide(false);
-    }
+   
 
     const classes = useStyles();
     const navigate = useNavigate();
@@ -80,109 +85,122 @@ export default function NavBar() {
 
     return (
         <div className={classes.root}>
-            <AppBar position="absolute" style={{ paddingTop: 0 }}>
+            <AppBar position="absolute" style={{ paddingTop: 0, backgroundColor: '#212121' }}>
                 <Toolbar>
 
                     <Typography variant="h6" className={classes.title} onClick={() => navigate("/")}>
                         {currentTab}
                     </Typography>
 
-                    <IconButton onClick={show} aria-label="Avatar">
+                    <IconButton onClick={handleOpen} aria-label="Avatar">
                         <StyledBadge color="primary">
                             {/* <ShoppingCartIcon /> */}
                             <Avatar p={3} >H</Avatar>
                         </StyledBadge>
                     </IconButton>
-
-                    {hide ? <Box 
-                        open={hide}
+                    {open === true ? <Modal
+                        open={open}
+                        Backdrop={0}
                         onClose={handleClose}
-                        sx={{
+                        aria-labelledby="parent-modal-title"
+                       
+                        aria-describedby="parent-modal-description"
+                    >
+                        
+                <Box
+                    
+                    sx={{
                         width: '100%', maxWidth: 360,
                         position: 'absolute',
                         right: '1%',
-                        top: '84%',
+                        top: '8%',
                         color: "black",
                         bgcolor: 'background.paper',
-                        borderRadius: "25px", 
+                        borderRadius: "25px",
                         padding: "2%",
                         boxShadow: 2
                     }}>
-                        <nav aria-label="main mailbox folders">
-                            <List   >
-                                <ListItem disablePadding>
-                                    <Typography variant="h5"><b> &nbsp;&nbsp;Personal</b></Typography>
-                                </ListItem>
-                                <br></br>
-                                <ListItem disablePadding>
-                                    <ListItemButton>
-                                        <ListItemIcon>
-                                            <Avatar alt="H" 
-                                            sx={{minWidth: "80px", minHeight: "80px",
-                                            position: "relative",
-                                            right: "10px"
+                    <nav aria-label="main mailbox folders">
+                        <List   >
+                            <ListItem disablePadding>
+                                <Typography variant="h5"><b> &nbsp;&nbsp;Personal</b></Typography>
+                            </ListItem>
+                            <br></br>
+                            <ListItem disablePadding>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        <Avatar alt="H"
+                                            sx={{
+                                                minWidth: "80px", minHeight: "80px",
+                                                position: "relative",
+                                                right: "10px"
                                             }}
                                             src="/static/images/avatar/1.jpg" className={classes.large} />
-                                        </ListItemIcon>
-                                        <Stack  direction="column">
+                                    </ListItemIcon>
+                                    <Stack direction="column">
                                         <Typography variant="h6">&nbsp;&nbsp;ABCDE</Typography>
                                         <ListItemText color="black" primary="&nbsp;&nbsp;abcd@gmail.com" />
-                                        </Stack>
+                                    </Stack>
+                                </ListItemButton>
+                            </ListItem>
+                        </List>
+                    </nav>
+                    <Divider />
+                    <nav aria-label="secondary mailbox folders">
+                        <List>
+                            <ListItem disablePadding>
+                                <Link to="/company/:id/HelpDocs" style={{
+                                    textDecoration: "none",
+                                    color: "black"
+                                }}>
+                                    <ListItemButton>
+                                        <Typography variant='h6' textDecoration="none" >Help Docs</Typography>
+                                    </ListItemButton>
+                                </Link>
+                            </ListItem>
+                          
+                                
+                            <ListItem disablePadding>
+                                <ListItemButton>
+                                    <Typography variant='h6' textDecoration="none" >Contact Us</Typography>
+                                </ListItemButton>
+                            </ListItem>
+
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <Typography variant='h6' textDecoration="none" >
+                                         subscription
+                                        </Typography>
                                     </ListItemButton>
                                 </ListItem>
-                            </List>
-                        </nav>
-                        <Divider />
-                        <nav aria-label="secondary mailbox folders">
-                            <List>
-                                <ListItem disablePadding>
-                                    <Link to="/company/:id/HelpDocs" onClick={show} style={{
-                                       textDecoration: "none",
-                                       color: "black"
-                                   }}>
-                                    <ListItemButton>
-                                      <Typography variant='h6' textDecoration="none" >Help Docs</Typography>
-                                    </ListItemButton>
-                                    </Link>
-                                </ListItem>
-                                <ListItem disablePadding>
 
-                                    <ListItemButton>
-                                      <Typography variant='h6' textDecoration="none" >Contact Us</Typography>
-                                    </ListItemButton>
-
-                                    <ListItem>
-                                    <ListItemButton>
-                                      <Typography variant='h6' textDecoration="none" >
-
-                                      </Typography>
-                                    </ListItemButton>
-                                    </ListItem>
-     
-                                </ListItem>
-                                <ListItem disablePadding>
-                                   <Link to="/company/:id/ReferAndEarn" onClick={show} style={{
-                                       textDecoration: "none",
-                                       color: "black"
-                                   }} >
+                           
+                            <ListItem disablePadding>
+                                <Link to="/company/:id/ReferAndEarn" style={{
+                                    textDecoration: "none",
+                                    color: "black"
+                                }} >
                                     <ListItemButton component="a" href="#simple-list">
-                                    <Typography variant='h6' textDecoration="none" >Refer and Earn</Typography>
+                                        <Typography variant='h6' textDecoration="none" >Refer and Earn</Typography>
                                     </ListItemButton>
-                                    </Link>
-                                </ListItem>
-                                <ListItem disablePadding>
+                                </Link>
+                            </ListItem>
+                            <ListItem disablePadding>
                                 <br></br>
                                 <br></br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<Button 
-                                onClick={() => {
-                                    removeCookie('user')
-                                    dispatch({type: USER_LOGOUT})
-                                }}
-                                variant='secondry' onClick={show}  style={{backgroundColor: "#0047AB",color: "white"}} >Log out</Button>
-                                </ListItem>
-                            </List>
-                        </nav>
-                    </Box> : null}
+                                &nbsp;&nbsp;&nbsp;&nbsp;<Button
+                                    onClick={() => {
+                                        removeCookie('user')
+                                        dispatch({ type: USER_LOGOUT })
+                                    }}
+                                    variant='secondry' style={{ backgroundColor: "#0047AB", color: "white" }} >Log out</Button>
+                            </ListItem>
+                        </List>
+                    </nav>
+                </Box> 
+                       
+                    </Modal> : null}
+
                 </Toolbar>
             </AppBar>
         </div>

@@ -13,6 +13,7 @@ import { Stack } from '@mui/material';
 import {useDispatch,useSelector} from "react-redux"
 import Popover from '@mui/material/Popover';
 import PPDocs from '../containers/PPDocs';
+import './side.css';
 
 
 
@@ -192,14 +193,14 @@ const ProjectSideBar = ({orientation, fetch}) => {
                         ))
                     } */}
 
-                        <Stack direction="column" >
+                        <Stack direction="column" style={{minWidth: "100%"}} >
                      
-                       {currentTab === "MANAGER" && <Grid item xs={10} style={{display:"flex",flexDirection: "column", alignItems:"center", justifyContent:"flex-start"}}> 
+                       {currentTab === "MANAGER" && <Grid item xs={10} className="minbox" style={{display:"flex",flexDirection: "column", alignItems:"center", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
-                               <Link to="/company/:id/Docs">
-                            <Typography>Docs</Typography>
+                               <Link to="/company/:id/Docs" className="mintext">
+                            <Typography className="mintext">Docs</Typography>
                             </Link>            
 
                        {/* <Button aria-describedby={id} variant="contained" > */}
@@ -213,6 +214,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                             id={id}
                             open={upopen}
                             anchorEl={anchorEl}
+                         
                             onClose={uphandleClose}
                             anchorOrigin={{
                               vertical: 'bottom',
@@ -221,74 +223,74 @@ const ProjectSideBar = ({orientation, fetch}) => {
                           >
 
                         </Popover> 
-                        {currentTab === "MANAGER" &&  <Link to="/company/:id/Tasks">
-                        <Grid item xs={10}  style={{display:"flex",flexDirection: "column", alignItems:"center", justifyContent:"flex-start"}}> 
+                        {currentTab === "MANAGER" &&  <Link to="/company/:id/Tasks" className="mintext" >
+                        <Grid item xs={10}  className="minbox"  style={{display:"flex",flexDirection: "column", alignItems:"center", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
-                               <Typography>Tasks</Typography>
+                               <Typography className="mintext" >Tasks</Typography>
                         </Grid>
                         </Link>}
 
                        
-                        {currentTab === "MANAGER" &&  <Link to="/company/:id/Bugs">
-                         <Grid item xs={10}  style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}>
+                        {currentTab === "MANAGER" &&  <Link to="/company/:id/Bugs" className="mintext"  >
+                         <Grid item xs={10}  className="minbox"  style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}>
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
-                            <Typography>Bugs</Typography>
+                            <Typography className="mintext" style={{textDecoration: "none"}} >Bugs</Typography>
                             </Grid>
                         </Link>}
                        
                          
 
-                        {currentTab === "AUTOMATE" &&  <Link to="/company/:id/Report">
-                         <Grid item xs={10} style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
+                        {currentTab === "AUTOMATE" &&  <Link to="/company/:id/Report" className="mintext"  >
+                         <Grid item xs={10} className="minbox" style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
-                            <Typography>Test</Typography>
+                            <Typography className="mintext">Test</Typography>
                         </Grid>
                         </Link>}
-                        {currentTab === "AUTOMATE" &&  <Link to="/company/:id/Report">
-                         <Grid item xs={10} style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
+                        {currentTab === "AUTOMATE" &&  <Link to="/company/:id/Report" className="mintext"  >
+                         <Grid item xs={10} className="minbox" style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
-                            <Typography>Run</Typography>
+                            <Typography className="mintext" > Run</Typography>
                         </Grid>
                         </Link>}
-                        {currentTab === "AUTOMATE" &&  <Link to="/company/:id/Report">
-                         <Grid item xs={10} style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
+                        {currentTab === "AUTOMATE" &&  <Link to="/company/:id/Report" className="mintext" >
+                         <Grid item xs={10} className="minbox" style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
-                            <Typography>Tools</Typography>
+                            <Typography className="mintext">Tools</Typography>
                         </Grid>
                         </Link>}
                        
-                        {currentTab === "SUPPORT" &&  <Link to="/company/:id/">
-                         <Grid item xs={10} style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
+                        {currentTab === "SUPPORT" &&  <Link to="/company/:id/" className="mintext" >
+                         <Grid item xs={10} className="minbox" style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
-                            <Typography>Tickets</Typography>
+                            <Typography className="mintext">Tickets</Typography>
                         </Grid>
                         </Link>}
-                        {currentTab === "SUPPORT" &&  <Link to="/company/:id/">
-                         <Grid item xs={10} style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
+                        {currentTab === "SUPPORT" &&  <Link to="/company/:id/" className="mintext" >
+                         <Grid item xs={10} className="minbox" style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
-                            <Typography>Social</Typography>
+                            <Typography className="mintext">Social</Typography>
                         </Grid>
                         </Link>}
-                        <Link to="/company/:id/Report">
-                         <Grid item xs={10} style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
+                        <Link to="/company/:id/Report" className="mintext" >
+                         <Grid item xs={10} className="minbox" className="minbox"  style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
                                </IconButton>
-                            <Typography>Reports</Typography>
+                            <Typography className="mintext">Reports</Typography>
                         </Grid>
                         </Link>
                         </Stack>

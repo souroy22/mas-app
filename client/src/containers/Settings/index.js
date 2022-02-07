@@ -15,6 +15,7 @@ import Sidebar from '../../components/Sidebar';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import { style } from '@mui/system';
 // import Typography from '@mui/material/Typography';
 // import Box from '@mui/material/Box';
 
@@ -161,6 +162,7 @@ const ProjectPageBugs = props => {
         }
     }, [user])
 
+
     return (
         <div style={{ width: '100%' }}>
             <div className={classes.toolbar} />
@@ -173,32 +175,34 @@ const ProjectPageBugs = props => {
                 <Grid item xs={10}>
                     <Grid container justify="flex-end">
                         <Page className={classes.root} title="Bugs">
-                            {/* <Backdrop style={{zIndex: 100, color: '#fff'}} open={loading}>
-                                <CircularProgress color="inherit" />
-                            </Backdrop> */}
-
-                            {/* <Container maxWidth={false}>
-                                <Toolbar fetch={fetchBugs} projects={projects} handleChange={handleChange} selected={selected} />
-
-                                <Box mt={3}>
-                                     <ReleaseNotes bugs={bugs} />
-                                </Box>
-                            </Container> */}
 
                             <Container style={styles.Container} maxWidth="100%" className="cofbackground" >
-                                <Typography variant="h5" >Settings</Typography>
+                                <Typography variant="h5" fontFamily="arial" >Settings</Typography>
                                 <Box sx={{ width: '100%' }}>
-                                    <Box style={{ borderBottom: 1, borderColor: 'divider', border: "2px solid back", minWidth: "100%" , margin: "2% 0px", display: "flex" , justifyContent: "space-around"}}>
-                                        <Tabs value={value} onChange={handle2Change} aria-label="basic tabs example">                                    
-                                            <Tab label="Item One" {...a11yProps(0)} />
-                                            <Tab label="Item Two" {...a11yProps(1)} />                                     
-                                        </Tabs>
+                                    <Box style={{ borderBottom: 1, borderColor: 'divider', minWidth: "100%" , margin: "2% 0px", display: "flex", justifyContent: "space-evenly"}}>
+                                        <Tabs value={value} onChange={handle2Change} aria-label="basic tabs example" style={{minWidth: "100%", display: "flex", justifyContent: "space-evenly"}}>     
+                                            <Tab label="General Settings" {...a11yProps(0)} />
+                                           <Tab label="App Settings" {...a11yProps(1)} />     
+                                       </Tabs>
                                     </Box>
                                     <TabPanel value={value} index={0}>
-                                    Item One
+                                        <Stack direction="row">
+                                    <Paper style={{maxWidth:"50%",margin: "2%", padding: "4%" }} >
+                                        <Typography variant='h4' style={{margin:'auto', maxWidth: "max-content", textDecoration: "underline"}}>Organization</Typography>
+                                        <Stack style={{margin: "2% 0%"}}>
+                                        <Typography variant='h6' >User Company</Typography> 
+                                        </Stack>
+                                    </Paper>   
+                                    <Paper style={{maxWidth:"50%",margin: "2%", padding: "4%" }} >
+                                        <Typography variant='h4' style={{margin:'auto', maxWidth: "max-content", textDecoration: "underline"}}>Organization</Typography>
+                                        <Stack style={{margin: "2% 0%"}}>
+                                        <Typography variant='h6' >User Company</Typography> 
+                                        </Stack>
+                                    </Paper>   
+                                    </Stack>
                                     </TabPanel>
                                     <TabPanel value={value} index={1}>
-                                    Item Two
+                                    App Settings
                                     </TabPanel>
                                 </Box>
 

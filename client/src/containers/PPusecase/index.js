@@ -280,8 +280,9 @@ const ProjectPageBugs = props => {
                                                 minWidth: "20%",
                                                 padding: '10px',
                                                 color: "white",
-                                                backgroundColor: "#1A66CA",
-                                                borderRadius: "5px"
+                                                backgroundColor: "#0277bd",
+                                                borderRadius: "5px",
+                                                border: 'none',
                                             }} onClick={pop} >Add Use</button>
                                     </Stack>
                                     <TableContainer component={Paper}>

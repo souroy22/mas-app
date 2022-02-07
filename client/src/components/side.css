@@ -1,0 +1,41 @@
+.minbox{
+    padding: 5% 0%;
+    margin: auto;
+    min-width: 100%;
+}
+
+.minbox:hover{
+    transition: all ease-in 0.5ms;
+    background-color: #eeeeee ;
+    color: "black";
+    font-weight: bold;
+}
+
+.minbox2{
+    padding: 5% 40%;
+    margin: auto;
+    display: flex;
+    min-width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.minbox2:hover{
+    transition: all ease-in 0.5ms;
+    background-color: #ffffff ;
+    color: "black";
+    font-weight: bold;
+}
+
+.mintext{
+    text-decoration: none;
+    color: black;
+    font-family: Arial;
+}
+
+.mintext:hover{
+    text-decoration: none;
+    color: black;
+    font-family: Arial;
+}
