@@ -23,7 +23,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Link } from 'react-router-dom';
-import USETitle from './USETitle';
+
 
 
 
@@ -110,52 +110,52 @@ const ProjectPageBugs = props => {
     }
 
     const handleChange2 = (name, value) => {
-        if (name === 'useCaseDocumentName') {
-            setUseCaseDocumentName(value)
+        if (name === 'companyName') {
+            setCompanyName(value)
         }
-        else if (name === 'useCaseDocumentTextContent') {
-            setUseCaseDocumentTextContent(value)
+        else if (name === 'createdBy') {
+            setCreatedBy(value)
         }
     }
-
+    
 
     const [getdata, setGetdata] = React.useState([]);
 
-    const [useCaseDocumentName, setUseCaseDocumentName] = React.useState("")
-    const [useCaseDocumentTextContent, setUseCaseDocumentTextContent] = React.useState("")
+    const [companyName, setCompanyName] = React.useState("")
+    const [createdBy, setcreatedBy] = React.useState("")
 
 
     const info = {
-        useCaseDocumentName: useCaseDocumentName,
-        useCaseDocumentTextContent: useCaseDocumentTextContent,
+        companyName: companyName,
+        createdBy: createdBy,
     }
 
     const details = {
-        useCaseDocumentName: useCaseDocumentName,
-        useCaseDocumentTextContent: useCaseDocumentTextContent,
+        companyName: companyName,
+        createdBy: createdBy,
     }
 
     const PutData = async (_id) => {
-    const res = await axios.put(`http://localhost:3000/usecasedocument/${_id}`, details, config);
+    const res = await axios.put(`http://localhost:3000/company/${_id}`, details, config);
     GetData();
     handleClose();
     }
 
     const PostData = async () => {
-        await axios.post(`http://localhost:3000/usecasedocument`, info, config);
+        await axios.post(`http://localhost:3000/company`, info, config);
         setBox(false);
         GetData();
     }
 
     const Ondelete = async (_id) => {
         console.log(_id)
-        var zex = await axios.delete(`http://localhost:3000/usecasedocument/${_id}`, config);
+        var zex = await axios.delete(`http://localhost:3000/company/${_id}`, config);
         console.log(zex)
         GetData();
     }
 
     const GetData = async () => {
-        const res = await axios.get(`http://localhost:3000/usecasedocument`, config);
+        const res = await axios.get(`http://localhost:3000/company`, config);
         setGetdata(res.data.data);
         console.log(res);
     }
@@ -273,8 +273,10 @@ const ProjectPageBugs = props => {
                                     alignItems: "center",
                                 }} justifyContent="center">
 
+                            <Typography variant="h4"  style={{fontFamily: "arial"}}  >Settings</Typography>
+
                                     <Stack display="flex" direction="row" minWidth="80%" sx={{ margin: "2% 0px" }} justifyContent="space-between">
-                                        <Typography variant="h5" >Use Case Document</Typography>
+                                        <Typography variant="h5"  style={{fontFamily: "arial"}}  >Company</Typography>
                                         <button className='btn btn-primary btn-gradient'
                                             style={{
                                                 minWidth: "20%",
@@ -283,7 +285,7 @@ const ProjectPageBugs = props => {
                                                 backgroundColor: "#0277bd",
                                                 borderRadius: "5px",
                                                 border: 'none',
-                                            }} onClick={pop} >Add Use</button>
+                                            }} onClick={pop} >Add Company</button>
                                     </Stack>
                                     <TableContainer component={Paper}>
                                         <Table sx={{ minWidth: 600 }} aria-label="customized table">
@@ -307,11 +309,11 @@ const ProjectPageBugs = props => {
                                                                 <StyledTableCell component="th" scope="row">
 
                                                                 <Link to="/company/:id/usecase/Title" >
-                                                                    {value.useCaseDocumentName}
+                                                                    {value.companyName}
                                                                     </Link>
 
                                                                 </StyledTableCell>
-                                                                <StyledTableCell align="right">{value.useCaseDocumentTextContent}</StyledTableCell>
+                                                                <StyledTableCell align="right">{value.createdBy}</StyledTableCell>
                  
 
                                                                 <StyledTableCell align="right"><Button onClick={() => handleOpen(value._id)} >Edit</Button></StyledTableCell>
@@ -327,18 +329,18 @@ const ProjectPageBugs = props => {
                                                                         <Stack spacing={3} >
                                                                             <label><b>Name</b></label>
                                                                             <TextField
-                                                                                value={useCaseDocumentName}
-                                                                                name="useCaseDocumentName"
-                                                                                id="useCaseDocumentName"
-                                                                                onChange={(e) => handleChange2('useCaseDocumentName', e.target.value)}
+                                                                                value={companyName}
+                                                                                name="companyName"
+                                                                                id="companyName"
+                                                                                onChange={(e) => handleChange2('companyName', e.target.value)}
                                                                             />
                                                                             <label><b>Text Content</b></label>
                                                                             <TextField
-                                                                                value={useCaseDocumentTextContent}
-                                                                                name="useCaseDocumentTextContent"
-                                                                                id="useCaseDocumentTextContent"
+                                                                                value={createdBy}
+                                                                                name="createdBy"
+                                                                                id="createdBy"
                                                                                 key={value._id} 
-                                                                                onChange={(e) => handleChange2('useCaseDocumentTextContent', e.target.value)}
+                                                                                onChange={(e) => handleChange2('createdBy', e.target.value)}
                                                                                 multiline
                                                                                 sx={{ marginBottom: "30px" }}
                                                                                 rows={5} />
@@ -394,18 +396,18 @@ const ProjectPageBugs = props => {
                                     <Stack spacing={3} >
                                         <label><b>Name</b></label>
                                         <TextField
-                                            value={useCaseDocumentName}
-                                            name="useCaseDocumentName"
-                                            id="useCaseDocumentName"
-                                            onChange={(e) => handleChange2('useCaseDocumentName', e.target.value)}
+                                            value={companyName}
+                                            name="companyName"
+                                            id="companyName"
+                                            onChange={(e) => handleChange2('companyName', e.target.value)}
                                         />
 
                                         <label><b>Text Content</b></label>
                                         <TextField
-                                            value={useCaseDocumentTextContent}
-                                            name="useCaseDocumentTextContent"
-                                            id="useCaseDocumentTextContent"
-                                            onChange={(e) => handleChange2('useCaseDocumentTextContent', e.target.value)}
+                                            value={createdBy}
+                                            name="createdBy"
+                                            id="createdBy"
+                                            onChange={(e) => handleChange2('createdBy', e.target.value)}
                                             multiline
                                             sx={{ marginBottom: "30px" }}
                                             rows={5} />

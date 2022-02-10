@@ -23,7 +23,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Link } from 'react-router-dom';
-import USETitle from './USETitle';
+
 
 
 
@@ -108,54 +108,53 @@ const ProjectPageBugs = props => {
             'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MWU1YTBhY2UwMWZkMzBlYzBiMGZjMjUiLCJpYXQiOjE2NDM2MDgwOTEsImV4cCI6MTY0NDIxMjg5MX0.evZcAfui0o2N4zPBhGK5iuRNQet_FrKO2hVfEzG6SiM`
         }
     }
+    
 
     const handleChange2 = (name, value) => {
-        if (name === 'useCaseDocumentName') {
-            setUseCaseDocumentName(value)
+        if (name === 'username') {
+            setUsername(value)
         }
-        else if (name === 'useCaseDocumentTextContent') {
-            setUseCaseDocumentTextContent(value)
+        else if (name === 'role') {
+            setRole(value)
         }
     }
 
 
     const [getdata, setGetdata] = React.useState([]);
 
-    const [useCaseDocumentName, setUseCaseDocumentName] = React.useState("")
-    const [useCaseDocumentTextContent, setUseCaseDocumentTextContent] = React.useState("")
+    const [username, setUsername] = React.useState("")
+    const [role, setRole] = React.useState("")
 
 
-    const info = {
-        useCaseDocumentName: useCaseDocumentName,
-        useCaseDocumentTextContent: useCaseDocumentTextContent,
+    const info = {username: username,
+        role: role,
     }
 
-    const details = {
-        useCaseDocumentName: useCaseDocumentName,
-        useCaseDocumentTextContent: useCaseDocumentTextContent,
+    const details = {username: username,
+        role: role,
     }
 
     const PutData = async (_id) => {
-    const res = await axios.put(`http://localhost:3000/usecasedocument/${_id}`, details, config);
+    const res = await axios.put(`http://localhost:3000/users${_id}`, details, config);
     GetData();
     handleClose();
     }
 
     const PostData = async () => {
-        await axios.post(`http://localhost:3000/usecasedocument`, info, config);
+        await axios.post(`http://localhost:3000/users`, info, config);
         setBox(false);
         GetData();
     }
 
     const Ondelete = async (_id) => {
         console.log(_id)
-        var zex = await axios.delete(`http://localhost:3000/usecasedocument/${_id}`, config);
+        var zex = await axios.delete(`http://localhost:3000/users/${_id}`, config);
         console.log(zex)
         GetData();
     }
 
     const GetData = async () => {
-        const res = await axios.get(`http://localhost:3000/usecasedocument`, config);
+        const res = await axios.get(`http://localhost:3000/users`, config);
         setGetdata(res.data.data);
         console.log(res);
     }
@@ -272,9 +271,9 @@ const ProjectPageBugs = props => {
                                     height: 'max-content',
                                     alignItems: "center",
                                 }} justifyContent="center">
-
+                            <Typography variant="h4"  style={{fontFamily: "arial"}}  >Settings</Typography>
                                     <Stack display="flex" direction="row" minWidth="80%" sx={{ margin: "2% 0px" }} justifyContent="space-between">
-                                        <Typography variant="h5" >Use Case Document</Typography>
+                                        <Typography variant="h5"  style={{fontFamily: "arial"}}  >Users</Typography>
                                         <button className='btn btn-primary btn-gradient'
                                             style={{
                                                 minWidth: "20%",
@@ -283,7 +282,7 @@ const ProjectPageBugs = props => {
                                                 backgroundColor: "#0277bd",
                                                 borderRadius: "5px",
                                                 border: 'none',
-                                            }} onClick={pop} >Add Use</button>
+                                            }} onClick={pop} >Add Users</button>
                                     </Stack>
                                     <TableContainer component={Paper}>
                                         <Table sx={{ minWidth: 600 }} aria-label="customized table">
@@ -307,11 +306,11 @@ const ProjectPageBugs = props => {
                                                                 <StyledTableCell component="th" scope="row">
 
                                                                 <Link to="/company/:id/usecase/Title" >
-                                                                    {value.useCaseDocumentName}
+                                                                    {value.username}
                                                                     </Link>
 
                                                                 </StyledTableCell>
-                                                                <StyledTableCell align="right">{value.useCaseDocumentTextContent}</StyledTableCell>
+                                                                <StyledTableCell align="right">{value.role}</StyledTableCell>
                  
 
                                                                 <StyledTableCell align="right"><Button onClick={() => handleOpen(value._id)} >Edit</Button></StyledTableCell>
@@ -327,18 +326,18 @@ const ProjectPageBugs = props => {
                                                                         <Stack spacing={3} >
                                                                             <label><b>Name</b></label>
                                                                             <TextField
-                                                                                value={useCaseDocumentName}
-                                                                                name="useCaseDocumentName"
-                                                                                id="useCaseDocumentName"
-                                                                                onChange={(e) => handleChange2('useCaseDocumentName', e.target.value)}
+                                                                                value={username}
+                                                                                name="username"
+                                                                                id="username"
+                                                                                onChange={(e) => handleChange2('username', e.target.value)}
                                                                             />
                                                                             <label><b>Text Content</b></label>
                                                                             <TextField
-                                                                                value={useCaseDocumentTextContent}
-                                                                                name="useCaseDocumentTextContent"
-                                                                                id="useCaseDocumentTextContent"
+                                                                                value={role}
+                                                                                name="role"
+                                                                                id="role"
                                                                                 key={value._id} 
-                                                                                onChange={(e) => handleChange2('useCaseDocumentTextContent', e.target.value)}
+                                                                                onChange={(e) => handleChange2('role', e.target.value)}
                                                                                 multiline
                                                                                 sx={{ marginBottom: "30px" }}
                                                                                 rows={5} />
@@ -394,18 +393,18 @@ const ProjectPageBugs = props => {
                                     <Stack spacing={3} >
                                         <label><b>Name</b></label>
                                         <TextField
-                                            value={useCaseDocumentName}
-                                            name="useCaseDocumentName"
-                                            id="useCaseDocumentName"
-                                            onChange={(e) => handleChange2('useCaseDocumentName', e.target.value)}
+                                            value={username}
+                                            name="username"
+                                            id="username"
+                                            onChange={(e) => handleChange2('username', e.target.value)}
                                         />
 
                                         <label><b>Text Content</b></label>
                                         <TextField
-                                            value={useCaseDocumentTextContent}
-                                            name="useCaseDocumentTextContent"
-                                            id="useCaseDocumentTextContent"
-                                            onChange={(e) => handleChange2('useCaseDocumentTextContent', e.target.value)}
+                                            value={role}
+                                            name="role"
+                                            id="role"
+                                            onChange={(e) => handleChange2('role', e.target.value)}
                                             multiline
                                             sx={{ marginBottom: "30px" }}
                                             rows={5} />

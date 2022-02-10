@@ -5,6 +5,8 @@ import PPReport from './PPReport';
 import PPDocs from './PPDocs';
 import PPTasks from './PPTasks';
 import Settings from './Settings';
+import SettingUser from './SettingUser';
+import SettingCompany from './SettingCompany';
 import HelpDocs from './HelpDocs';
 import ReferAndEarn from './ReferAndEarn';
 import PPusecase from './PPusecase';
@@ -57,6 +59,8 @@ const App = () => {
                 <PrivateRoute path="/company/:id/ReferAndEarn" exact element={<ReferAndEarn />} /> 
                 <PrivateRoute path="/company/:id/HelpDocs" exact element={<HelpDocs />} /> 
                 <PrivateRoute path="/company/:id/Settings" exact element={<Settings />} /> 
+                <PrivateRoute path="/company/:id/Settings/SettingUser" exact element={<SettingUser />} /> 
+                <PrivateRoute path="/company/:id/Settings/SettingCompany" exact element={<SettingCompany />} /> 
                 <PrivateRoute path="/company/:id/Bugs" exact element={<ProjectPageBugs />} /> 
                 <PrivateRoute path="/company/:id/Notes" exact element={<ProjectPageNotes />} /> 
                 <PrivateRoute path="/company/:id/usecase/Title" exact element={<USETitle />} /> 

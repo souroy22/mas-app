@@ -15,6 +15,8 @@ import Sidebar from '../../components/Sidebar';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import '../../components/side.css';
+import { Link } from 'react-router-dom';
 import { style } from '@mui/system';
 // import Typography from '@mui/material/Typography';
 // import Box from '@mui/material/Box';
@@ -177,7 +179,7 @@ const ProjectPageBugs = props => {
                         <Page className={classes.root} title="Bugs">
 
                             <Container style={styles.Container} maxWidth="100%" className="cofbackground" >
-                                <Typography variant="h5" fontFamily="arial" >Settings</Typography>
+                            <Typography variant="h4"  style={{fontFamily: "arial"}}  >Settings</Typography>
                                 <Box sx={{ width: '100%' }}>
                                     <Box style={{ borderBottom: 1, borderColor: 'divider', minWidth: "100%" , margin: "2% 0px", display: "flex", justifyContent: "space-evenly"}}>
                                         <Tabs value={value} onChange={handle2Change} aria-label="basic tabs example" style={{minWidth: "100%", display: "flex", justifyContent: "space-evenly"}}>     
@@ -190,13 +192,18 @@ const ProjectPageBugs = props => {
                                     <Paper style={{maxWidth:"50%",margin: "2%", padding: "4%" }} >
                                         <Typography variant='h4' style={{margin:'auto', maxWidth: "max-content", textDecoration: "underline"}}>Organization</Typography>
                                         <Stack style={{margin: "2% 0%"}}>
-                                        <Typography variant='h6' >User Company</Typography> 
+                                         <Link to="/company/:id/Settings/SettingUser" className="mintext" > 
+                                        <Typography variant='h6' ><li>User</li></Typography> 
+                                        </Link>  
+                                        <Link to="/company/:id/Settings/SettingCompany" className="mintext" > 
+                                        <Typography variant='h6' ><li>Company</li></Typography> 
+                                        </Link>
                                         </Stack>
                                     </Paper>   
                                     <Paper style={{maxWidth:"50%",margin: "2%", padding: "4%" }} >
                                         <Typography variant='h4' style={{margin:'auto', maxWidth: "max-content", textDecoration: "underline"}}>Organization</Typography>
                                         <Stack style={{margin: "2% 0%"}}>
-                                        <Typography variant='h6' >User Company</Typography> 
+                                        <Typography variant='h6' ></Typography> 
                                         </Stack>
                                     </Paper>   
                                     </Stack>
