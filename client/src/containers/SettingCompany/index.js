@@ -122,7 +122,7 @@ const ProjectPageBugs = props => {
     const [getdata, setGetdata] = React.useState([]);
 
     const [companyName, setCompanyName] = React.useState("")
-    const [createdBy, setcreatedBy] = React.useState("")
+    const [createdBy, setCreatedBy] = React.useState("")
 
 
     const info = {
