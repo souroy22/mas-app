@@ -108,7 +108,7 @@ const ProjectPageBugs = props => {
             'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MWU1YTBhY2UwMWZkMzBlYzBiMGZjMjUiLCJpYXQiOjE2NDM2MDgwOTEsImV4cCI6MTY0NDIxMjg5MX0.evZcAfui0o2N4zPBhGK5iuRNQet_FrKO2hVfEzG6SiM`
         }
     }
-    
+
 
     const handleChange2 = (name, value) => {
         if (name === 'username') {
@@ -288,8 +288,8 @@ const ProjectPageBugs = props => {
                                         <Table sx={{ minWidth: 600 }} aria-label="customized table">
                                             <TableHead>
                                                 <TableRow>
-                                                    <StyledTableCell>Name</StyledTableCell>
-                                                    <StyledTableCell align="right">Title</StyledTableCell>
+                                                    <StyledTableCell>User name</StyledTableCell>
+                                                    <StyledTableCell align="right">Role</StyledTableCell>
                                                     <StyledTableCell align="right">Edit</StyledTableCell>
                                                     <StyledTableCell align="right">Delete</StyledTableCell>
                                                     {/* <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
@@ -324,14 +324,14 @@ const ProjectPageBugs = props => {
                                                                     >
                                                                     <Paper style={{ ...style, minWidth: "80%", borderRadius: "25px", border: "none", minHeight: "70%", padding: "5% 5%" }}>
                                                                         <Stack spacing={3} >
-                                                                            <label><b>Name</b></label>
+                                                                            <label><b>User name</b></label>
                                                                             <TextField
                                                                                 value={username}
                                                                                 name="username"
                                                                                 id="username"
                                                                                 onChange={(e) => handleChange2('username', e.target.value)}
                                                                             />
-                                                                            <label><b>Text Content</b></label>
+                                                                            <label><b>Role</b></label>
                                                                             <TextField
                                                                                 value={role}
                                                                                 name="role"
@@ -391,7 +391,7 @@ const ProjectPageBugs = props => {
                                 }}>
 
                                     <Stack spacing={3} >
-                                        <label><b>Name</b></label>
+                                        <label><b>User name</b></label>
                                         <TextField
                                             value={username}
                                             name="username"
@@ -399,7 +399,7 @@ const ProjectPageBugs = props => {
                                             onChange={(e) => handleChange2('username', e.target.value)}
                                         />
 
-                                        <label><b>Text Content</b></label>
+                                        <label><b>Role</b></label>
                                         <TextField
                                             value={role}
                                             name="role"
