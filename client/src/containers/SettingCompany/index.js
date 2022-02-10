@@ -291,10 +291,10 @@ const ProjectPageBugs = props => {
                                         <Table sx={{ minWidth: 600 }} aria-label="customized table">
                                             <TableHead>
                                                 <TableRow>
-                                                    <StyledTableCell>Name</StyledTableCell>
-                                                    <StyledTableCell align="right">Title</StyledTableCell>
-                                                    <StyledTableCell align="right">Edit</StyledTableCell>
-                                                    <StyledTableCell align="right">Delete</StyledTableCell>
+                                                    <StyledTableCell style={{backgroundColor: "white", color: "black"}} >Name</StyledTableCell>
+                                                    {/* <StyledTableCell align="right">Title</StyledTableCell> */}
+                                                    <StyledTableCell align="right" style={{backgroundColor: "white", color: "black"}} >Edit</StyledTableCell>
+                                                    <StyledTableCell align="right" style={{backgroundColor: "white", color: "black"}} >Delete</StyledTableCell>
                                                     {/* <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
                                                 </TableRow>
                                             </TableHead>
@@ -313,7 +313,7 @@ const ProjectPageBugs = props => {
                                                                     </Link>
 
                                                                 </StyledTableCell>
-                                                                <StyledTableCell align="right">{value.createdBy}</StyledTableCell>
+                                                                {/* <StyledTableCell align="right">{value.createdBy}</StyledTableCell> */}
                  
 
                                                                 <StyledTableCell align="right"><Button onClick={() => handleOpen(value._id)} >Edit</Button></StyledTableCell>

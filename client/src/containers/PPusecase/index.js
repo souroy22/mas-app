@@ -285,14 +285,14 @@ const ProjectPageBugs = props => {
                                                 border: 'none',
                                             }} onClick={pop} >Add Use</button>
                                     </Stack>
-                                    <TableContainer component={Paper}>
+                                    <TableContainer  component={Paper}>
                                         <Table sx={{ minWidth: 600 }} aria-label="customized table">
                                             <TableHead>
                                                 <TableRow>
-                                                    <StyledTableCell>Name</StyledTableCell>
-                                                    <StyledTableCell align="right">Title</StyledTableCell>
-                                                    <StyledTableCell align="right">Edit</StyledTableCell>
-                                                    <StyledTableCell align="right">Delete</StyledTableCell>
+                                                    <StyledTableCell style={{backgroundColor: "white", color: "black"}} >Name</StyledTableCell>
+                                                    {/* <StyledTableCell align="right">Title</StyledTableCell> */}
+                                                    <StyledTableCell align="right" style={{backgroundColor: "white", color: "black"}} >Edit</StyledTableCell>
+                                                    <StyledTableCell align="right" style={{backgroundColor: "white", color: "black"}} >Delete</StyledTableCell>
                                                     {/* <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
                                                 </TableRow>
                                             </TableHead>
@@ -306,12 +306,13 @@ const ProjectPageBugs = props => {
                                                               
                                                                 <StyledTableCell component="th" scope="row">
 
-                                                                <Link to="/company/:id/usecase/Title" >
+                                                                 <Link to="/company/:id/usecase/Title" >
                                                                     {value.useCaseDocumentName}
-                                                                    </Link>
+                                                                    </Link> 
 
                                                                 </StyledTableCell>
-                                                                <StyledTableCell align="right">{value.useCaseDocumentTextContent}</StyledTableCell>
+                                                                
+                                                                {/* <StyledTableCell align="right">{value.useCaseDocumentTextContent}</StyledTableCell> */}
                  
 
                                                                 <StyledTableCell align="right"><Button onClick={() => handleOpen(value._id)} >Edit</Button></StyledTableCell>
