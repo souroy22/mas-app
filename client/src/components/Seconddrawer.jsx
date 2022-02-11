@@ -38,7 +38,7 @@ const Seconddrawer = ({orientation}) => {
 
             <Box flexDirection="column" justifyContent="flex-end" >
        
-            <Link to="/company/:id/usecase" className='minbox2 mintext' >
+            <Link to="/company/:id/usecase" className='minbox3 mintext' >
                   <IconButton>
                   <MenuBookIcon /> 
                 </IconButton>
@@ -48,7 +48,7 @@ const Seconddrawer = ({orientation}) => {
 
                 <Divider />
 
-                <Link to="/company/:id/Notes" className='minbox2 mintext' >
+                <Link to="/company/:id/Notes" className='minbox3 mintext' >
                   <IconButton>
                     <MenuBookIcon /> 
                 </IconButton>

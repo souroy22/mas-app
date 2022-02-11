@@ -38,4 +38,23 @@
     text-decoration: none;
     color: black;
     font-family: Arial;
+    cursor: context-menu;
+}
+
+
+.minbox3{
+    padding: 4% 0%;
+    display: flex;
+    min-width: 100%;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    font-size: small;
+}
+
+.minbox3:hover{
+    transition: all ease-in 0.5ms;
+    background-color: #ffffff ;
+    color: "black";
+    font-weight: bold;
 }

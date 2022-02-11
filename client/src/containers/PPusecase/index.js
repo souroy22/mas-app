@@ -277,7 +277,7 @@ const ProjectPageBugs = props => {
                                         <Typography variant="h5" >Use Case Document</Typography>
                                         <button className='btn btn-primary btn-gradient'
                                             style={{
-                                                minWidth: "20%",
+                                                minWidth: "15%",
                                                 padding: '10px',
                                                 color: "white",
                                                 backgroundColor: "#0277bd",
@@ -311,7 +311,7 @@ const ProjectPageBugs = props => {
                                                                     </Link> 
 
                                                                 </StyledTableCell>
-                                                                
+
                                                                 {/* <StyledTableCell align="right">{value.useCaseDocumentTextContent}</StyledTableCell> */}
                  
 
@@ -349,7 +349,7 @@ const ProjectPageBugs = props => {
                                                                                 <button className='btn btn-primary btn-gradient'
                                                                                     style={{
                                                                                         borderRadius: "5px",
-                                                                                        minWidth: "30%",
+                                                                                        minWidth: "20%",
                                                                                         margin: "5px auto",
                                                                                         padding: '10px',
                                                                                         backgroundColor: "#1A66CA",
@@ -361,7 +361,7 @@ const ProjectPageBugs = props => {
                                                                                 <button className='btn btn-gradient'
                                                                                     style={{
                                                                                         borderRadius: "5px",
-                                                                                        minWidth: "30%",
+                                                                                        minWidth: "20%",
                                                                                         margin: "5px auto",
                                                                                         padding: '10px',
                                                                                     }}   onClick={handleClose} >Cancel</button>
