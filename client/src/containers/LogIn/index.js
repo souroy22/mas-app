@@ -50,8 +50,10 @@ const Login = () => {
 
             setCookies('user', {
                 token: credentials.data.token,
-                id: credentials.data.id
-            })
+                id: credentials.data.id,
+                user_name: credentials.data.firstName,
+                user_email: credentials.data.email
+            });
             
             dispatch({type: USER_LOGIN, payload: credentials.data})
         }

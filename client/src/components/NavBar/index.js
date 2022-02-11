@@ -60,26 +60,25 @@ export default function NavBar() {
      };
 
 
-    const [data, setData] = React.useState([]);
+    const [user_name, setUserName] = React.useState("");
+    const [user_email, setUserEmail] = React.useState("");
+    const [reload, setReload] = React.useState(false);
 
-
-
-    // const GetData = async() => {
-    //     const req = await axios.get(`http://localhost:3000/users`);
-    //     setData(req.data.licenseInfo);
-    //     console.log(req);
-    //     }
-
-    // useEffect(() => {
-    // GetData();
-    // },[])
+    const [cookies, setCookie, removeCookie] = useCookies(['user']);
+     useEffect(() => {
+        if(cookies && cookies?.user){
+            const {user_name, user_email} = cookies.user;
+            setUserName(user_name);
+            setUserEmail(user_email);
+            setReload(!reload);
+        }
+     }, [user_name, reload, cookies, user_email]);
 
 
    
 
     const classes = useStyles();
     const navigate = useNavigate();
-    const [cookies, setCookie, removeCookie] = useCookies(['user'])
     const dispatch = useDispatch();
     const { currentTab } = useSelector(state => state.currentTab);
 
@@ -92,12 +91,12 @@ export default function NavBar() {
                         {currentTab}
                     </Typography>
 
-                    <IconButton onClick={handleOpen} aria-label="Avatar">
+                    {user_name && <IconButton onClick={handleOpen} aria-label="Avatar">
                         <StyledBadge color="primary">
                             {/* <ShoppingCartIcon /> */}
-                            <Avatar p={3} >H</Avatar>
+                            <Avatar p={3} >{user_name.slice(0, 1)}</Avatar>
                         </StyledBadge>
-                    </IconButton>
+                    </IconButton>}
                     {open === true ? <Modal
                         open={open}
                         Backdrop={0}
@@ -129,7 +128,7 @@ export default function NavBar() {
                             <ListItem disablePadding>
                                 <ListItemButton>
                                     <ListItemIcon>
-                                        <Avatar alt="H"
+                                        <Avatar alt={user_name.slice(0, 1)}
                                             sx={{
                                                 minWidth: "80px", minHeight: "80px",
                                                 position: "relative",
@@ -138,8 +137,8 @@ export default function NavBar() {
                                             src="/static/images/avatar/1.jpg" className={classes.large} />
                                     </ListItemIcon>
                                     <Stack direction="column">
-                                        <Typography variant="h6">&nbsp;&nbsp;ABCDE</Typography>
-                                        <ListItemText color="black" primary="&nbsp;&nbsp;abcd@gmail.com" />
+                                        <Typography variant="h6">&nbsp;&nbsp;{user_name}</Typography>
+                                        <ListItemText color="black" primary={`${user_email}`} />
                                     </Stack>
                                 </ListItemButton>
                             </ListItem>
@@ -191,7 +190,8 @@ export default function NavBar() {
                                 &nbsp;&nbsp;&nbsp;&nbsp;<Button
                                     onClick={() => {
                                         removeCookie('user')
-                                        dispatch({ type: USER_LOGOUT })
+                                        dispatch({ type: USER_LOGOUT });
+                                        window.location.reload();
                                     }}
                                     variant='secondry' style={{ backgroundColor: "#0047AB", color: "white" }} >Log out</Button>
                             </ListItem>
