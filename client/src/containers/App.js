@@ -2,6 +2,8 @@ import React from 'react';
 import NavBar from '../components/NavBar';
 import ProjectPage from './ProjectPage';
 import PPReport from './PPReport';
+import Tickets from './Tickets';
+import Social from './Social';
 import PPDocs from './PPDocs';
 import PPTasks from './PPTasks';
 import Settings from './Settings';
@@ -53,6 +55,8 @@ const App = () => {
                 <PrivateRoute path="/company/" exact element={<Company />} />
                 <PrivateRoute path="/company/:id" exact element={<ProjectPage />} /> 
                 <PrivateRoute path="/company/:id/Report" exact element={<PPReport />} /> 
+                <PrivateRoute path="/company/:id/Tickets" exact element={<Tickets />} /> 
+                <PrivateRoute path="/company/:id/Social" exact element={<Social />} /> 
                 <PrivateRoute path="/company/:id/Docs" exact element={<PPDocs />} /> 
                 <PrivateRoute path="/company/:id/usecase" exact element={<PPusecase />} /> 
                 <PrivateRoute path="/company/:id/Tasks" exact element={<PPTasks />} /> 

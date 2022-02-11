@@ -269,7 +269,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                         </Grid>
                         </Link>}
                        
-                        {currentTab === "SUPPORT" &&  <Link to="/company/:id/" className="mintext" >
+                        {currentTab === "SUPPORT" &&  <Link to="/company/:id/Tickets" className="mintext" >
                          <Grid item xs={10} className="minbox" style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
@@ -277,7 +277,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                             <Typography className="mintext">Tickets</Typography>
                         </Grid>
                         </Link>}
-                        {currentTab === "SUPPORT" &&  <Link to="/company/:id/" className="mintext" >
+                        {currentTab === "SUPPORT" &&  <Link to="/company/:id/Social" className="mintext" >
                          <Grid item xs={10} className="minbox" style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <MenuBookIcon /> 
