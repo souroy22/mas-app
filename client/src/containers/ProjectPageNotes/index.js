@@ -412,7 +412,7 @@ const ProjectPageBugs = props => {
                                             <button className='btn btn-primary btn-gradient'
                                                 style={{
                                                     borderRadius: "5px",
-                                                    minWidth: "30%",
+                                                    minWidth: "20%",
                                                     margin: "5px auto",
                                                     padding: '10px',
                                                     backgroundColor: "#1A66CA",
@@ -424,7 +424,7 @@ const ProjectPageBugs = props => {
                                             <button className='btn btn-gradient'
                                                 style={{
                                                     borderRadius: "5px",
-                                                    minWidth: "30%",
+                                                    minWidth: "20%",
                                                     margin: "5px auto",
                                                     padding: '10px',
                                                 }} onClick={popdown} >Cancel</button>
