@@ -60,19 +60,21 @@ export default function NavBar() {
      };
 
 
-    const [user_name, setUserName] = React.useState("");
-    const [user_email, setUserEmail] = React.useState("");
-    const [reload, setReload] = React.useState(false);
-
-    const [cookies, setCookie, removeCookie] = useCookies(['user']);
-     useEffect(() => {
-        if(cookies && cookies?.user){
-            const {user_name, user_email} = cookies.user;
-            setUserName(user_name);
-            setUserEmail(user_email);
-            setReload(!reload);
-        }
-     }, [user_name, reload, cookies, user_email]);
+     const [user_name, setUserName] = React.useState("");
+     const [user_email, setUserEmail] = React.useState("");
+     const [user_licenseInf, setuserLicenseInfo] = React.useState("");
+     const [reload, setReload] = React.useState(false);
+ 
+     const [cookies, setCookie, removeCookie] = useCookies(['user']);
+      useEffect(() => {
+         if(cookies && cookies?.user){
+             const {user_name, user_email, user_licenseInfo} = cookies.user;
+             setUserName(user_name);
+             setUserEmail(user_email);
+             setuserLicenseInfo(user_licenseInfo);
+             setReload(!reload);
+         }
+      }, [user_name, reload, cookies, user_email, user_licenseInf]);
 
 
    
@@ -168,7 +170,7 @@ export default function NavBar() {
                                 <ListItem disablePadding>
                                     <ListItemButton>
                                         <Typography variant='h6' textDecoration="none" >
-                                         subscription
+                                         {user_licenseInf}
                                         </Typography>
                                     </ListItemButton>
                                 </ListItem>

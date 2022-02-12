@@ -47,12 +47,12 @@ const Login = () => {
             setLoginErrors(true)
         } else {
             setLoginErrors(false)
-
             setCookies('user', {
                 token: credentials.data.token,
                 id: credentials.data.id,
                 user_name: credentials.data.firstName,
-                user_email: credentials.data.email
+                user_email: credentials.data.email,
+                user_licenseInfo: credentials.data.licenseInfo
             });
             
             dispatch({type: USER_LOGIN, payload: credentials.data})
