@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from "react-redux";
 import NavBar from '../components/NavBar';
 import ProjectPage from './ProjectPage';
 import PPReport from './PPReport';
@@ -39,11 +40,12 @@ const useStyles = makeStyles((theme) => ({
 
 const App = () => {
     const classes = useStyles();
+    const user = useSelector(state => state.authentication.user);
 
     return (
         <div className={classes.root}>
 
-            <NavBar style={{paddingTop : 0}} />
+            {!!user && <NavBar style={{paddingTop : 0}} />}
 
             <Routes>
                 <PrivateRoute path="/company/:id/:bugId" exact element={<BugDetail />} /> 

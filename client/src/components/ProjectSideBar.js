@@ -14,7 +14,14 @@ import {useDispatch,useSelector} from "react-redux"
 import Popover from '@mui/material/Popover';
 import PPDocs from '../containers/PPDocs';
 import './side.css';
-
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import BugReportIcon from '@mui/icons-material/BugReport';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import ArticleIcon from '@mui/icons-material/Article';
+import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
+import SecurityIcon from '@mui/icons-material/Security';
+import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
+import PublicIcon from '@mui/icons-material/Public';
 
 
 
@@ -197,7 +204,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                      
                        {currentTab === "MANAGER" && <Grid item xs={10} className="minbox" style={{display:"flex",flexDirection: "column", alignItems:"center", justifyContent:"flex-start"}}> 
                                <IconButton>
-                               <MenuBookIcon /> 
+                               <ArticleIcon />
                                </IconButton>
                                <Link to="/company/:id/Docs" className="mintext">
                             <Typography className="mintext">Docs</Typography>
@@ -226,7 +233,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                         {currentTab === "MANAGER" &&  <Link to="/company/:id/Tasks" className="mintext" >
                         <Grid item xs={10}  className="minbox"  style={{display:"flex",flexDirection: "column", alignItems:"center", justifyContent:"flex-start"}}> 
                                <IconButton>
-                               <MenuBookIcon /> 
+                               <TaskAltIcon /> 
                                </IconButton>
                                <Typography className="mintext" >Tasks</Typography>
                         </Grid>
@@ -236,7 +243,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                         {currentTab === "MANAGER" &&  <Link to="/company/:id/Bugs" className="mintext"  >
                          <Grid item xs={10}  className="minbox"  style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}>
                                <IconButton>
-                               <MenuBookIcon /> 
+                               <BugReportIcon /> 
                                </IconButton>
                             <Typography className="mintext" style={{textDecoration: "none"}} >Bugs</Typography>
                             </Grid>
@@ -247,7 +254,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                         {currentTab === "AUTOMATE" &&  <Link to="/company/:id/Report" className="mintext"  >
                          <Grid item xs={10} className="minbox" style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
-                               <MenuBookIcon /> 
+                               <ArticleIcon /> 
                                </IconButton>
                             <Typography className="mintext">Test</Typography>
                         </Grid>
@@ -255,7 +262,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                         {currentTab === "AUTOMATE" &&  <Link to="/company/:id/Report" className="mintext"  >
                          <Grid item xs={10} className="minbox" style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
-                               <MenuBookIcon /> 
+                               <PublishedWithChangesIcon /> 
                                </IconButton>
                             <Typography className="mintext" > Run</Typography>
                         </Grid>
@@ -263,7 +270,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                         {currentTab === "AUTOMATE" &&  <Link to="/company/:id/Report" className="mintext" >
                          <Grid item xs={10} className="minbox" style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
-                               <MenuBookIcon /> 
+                               <SecurityIcon /> 
                                </IconButton>
                             <Typography className="mintext">Tools</Typography>
                         </Grid>
@@ -272,7 +279,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                         {currentTab === "SUPPORT" &&  <Link to="/company/:id/Tickets" className="mintext" >
                          <Grid item xs={10} className="minbox" style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
-                               <MenuBookIcon /> 
+                               <ConfirmationNumberIcon /> 
                                </IconButton>
                             <Typography className="mintext">Tickets</Typography>
                         </Grid>
@@ -280,7 +287,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                         {currentTab === "SUPPORT" &&  <Link to="/company/:id/Social" className="mintext" >
                          <Grid item xs={10} className="minbox" style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
-                               <MenuBookIcon /> 
+                               <PublicIcon /> 
                                </IconButton>
                             <Typography className="mintext">Social</Typography>
                         </Grid>
@@ -288,7 +295,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                         <Link to="/company/:id/Report" className="mintext" >
                          <Grid item xs={10} className="minbox" className="minbox"  style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
-                               <MenuBookIcon /> 
+                               <AssessmentIcon /> 
                                </IconButton>
                             <Typography className="mintext">Reports</Typography>
                         </Grid>

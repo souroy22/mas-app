@@ -9,6 +9,7 @@ export default function reducer(state=defaultState, action) {
                 user: action.payload
             }
         case USER_LOGOUT:
+            document.cookie = 'user' + '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
             return {
                 user: null
             }

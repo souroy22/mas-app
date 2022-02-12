@@ -63,7 +63,6 @@ export default function NavBar() {
      const [user_name, setUserName] = React.useState("");
      const [user_email, setUserEmail] = React.useState("");
      const [user_licenseInf, setuserLicenseInfo] = React.useState("");
-     const [reload, setReload] = React.useState(false);
  
      const [cookies, setCookie, removeCookie] = useCookies(['user']);
       useEffect(() => {
@@ -72,9 +71,8 @@ export default function NavBar() {
              setUserName(user_name);
              setUserEmail(user_email);
              setuserLicenseInfo(user_licenseInfo);
-             setReload(!reload);
          }
-      }, [user_name, reload, cookies, user_email, user_licenseInf]);
+      }, [user_name, cookies, user_email, user_licenseInf]);
 
 
    
@@ -84,12 +82,18 @@ export default function NavBar() {
     const dispatch = useDispatch();
     const { currentTab } = useSelector(state => state.currentTab);
 
+    const loggedout = () => {
+        removeCookie('user',{path:'/'});
+        dispatch({ type: USER_LOGOUT });
+        window.location.reload();
+    }
+
     return (
         <div className={classes.root}>
             <AppBar position="absolute" style={{ paddingTop: 0, backgroundColor: '#212121' }}>
                 <Toolbar>
 
-                    <Typography variant="h6" className={classes.title} onClick={() => navigate("/")}>
+                    <Typography variant="h6" className={classes.title}>
                         {currentTab}
                     </Typography>
 
@@ -190,11 +194,7 @@ export default function NavBar() {
                                 <br></br>
                                 <br></br>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<Button
-                                    onClick={() => {
-                                        removeCookie('user')
-                                        dispatch({ type: USER_LOGOUT });
-                                        window.location.reload();
-                                    }}
+                                    onClick={loggedout}
                                     variant='secondry' style={{ backgroundColor: "#0047AB", color: "white" }} >Log out</Button>
                             </ListItem>
                         </List>
