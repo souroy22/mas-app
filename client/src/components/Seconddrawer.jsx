@@ -9,6 +9,8 @@ import {useDispatch} from "react-redux";
 import './side.css';
 
 
+//Manoj - Menubook icon removed need to adjust the UI on Icon removed place(Icon displayed before text'use case doc' & 'Release Notes')
+
 const useStyles = makeStyles((theme) => ({
     drawer: {
         zIndex: 3,
@@ -40,7 +42,6 @@ const Seconddrawer = ({orientation}) => {
        
             <Link to="/company/:id/usecase" className='minbox3 mintext' >
                   <IconButton>
-                  <MenuBookIcon /> 
                 </IconButton>
                   <Typography style={{maxWidth: "fit-content",fontFamily: "arial",fontSize: "small"}} onClick={()=>dispatch(setCurrentTab("MANAGER"))}>Use Case Documents</Typography>
             </Link>
@@ -50,7 +51,6 @@ const Seconddrawer = ({orientation}) => {
 
                 <Link to="/company/:id/Notes" className='minbox3 mintext' >
                   <IconButton>
-                    <MenuBookIcon /> 
                 </IconButton>
                       <Typography style={{maxWidth: "fit-content",fontFamily: "arial",fontSize: "small"}}onClick={()=>dispatch(setCurrentTab("SUPPORT"))}>Release Notes</Typography>
                 </Link>

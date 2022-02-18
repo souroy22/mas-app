@@ -26,7 +26,8 @@ import TryBuyPage from './TryBuyPage';
 import PrivateRoute from '../components/PrivateRoute';
 import CreateCompany from '../components/CreateCompany';
 import Company from '../containers/Company';
-import Tests from '../components/Tests/Tests';
+import AutomateTests from './AutomateTests';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -71,7 +72,8 @@ const App = () => {
                 <PrivateRoute path="/company/:id/Notes" exact element={<ProjectPageNotes />} /> 
                 <PrivateRoute path="/company/:id/usecase/Title" exact element={<USETitle />} /> 
                 <PrivateRoute path="/company/:id/Notes/Title" exact element={<Title />} /> 
-                <Route path="/tests/" exact element={<Tests />} />
+                <PrivateRoute path="/company/:id/tests" exact element={<AutomateTests />} /> 
+
             </Routes>
 
         </div>

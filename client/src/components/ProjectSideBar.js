@@ -251,7 +251,7 @@ const ProjectSideBar = ({orientation, fetch}) => {
                        
                          
 
-                        {currentTab === "AUTOMATE" &&  <Link to="/company/:id/Report" className="mintext"  >
+                        {currentTab === "AUTOMATE" &&  <Link to="/company/:id/tests" className="mintext"  >
                          <Grid item xs={10} className="minbox" style={{display:"flex", alignItems:"center",flexDirection: "column", justifyContent:"flex-start"}}> 
                                <IconButton>
                                <ArticleIcon /> 
