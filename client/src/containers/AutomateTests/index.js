@@ -60,7 +60,7 @@ const Toolbar = ({handleChange, projects, selected, fetch}) => {
                         variant="contained"
                         onClick={() => setOpen(true)}
                     >
-                        +New Test
+                        New Test
                     </Button>
                 </Grid>
             </Grid>
