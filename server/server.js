@@ -3,9 +3,13 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const jwt = require('_helpers/jwt');
-const errorHandler = require('_helpers/error-handler');
-const useCaseDocumentRouter = require("./apis/Use_case_document/UseCaseRouter")
-const ReleaseNoteRouter = require("./apis/Release_note/ReleaseNoteRouter")
+
+const mainRouter = require("./routers");
+// const errorHandler = require('_helpers/error-handler');
+// const useCaseDocumentRouter = require("./apis/Use_case_document/UseCaseRouter")
+// const ReleaseNoteRouter = require("./apis/Release_note/ReleaseNoteRouter")
+const PORT = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 3000;
+
 app.use(express.urlencoded({extended: true}));
 app.use(express.json()) // To parse the incoming requests with JSON payloads
 app.use(cors());
@@ -14,19 +18,17 @@ app.use(cors());
 app.use(jwt());
 
 // api routes
-app.use('/users', require('./apis/users/users.controller'));
-app.use('/bugs', require('./apis/bugs/bugs.controller'));
-app.use('/company', require('./apis/company/company.controller'));
-app.use('/project', require('./apis/project/project.controller'));
-app.use('/tests',require('./apis/testScripts/testScripts.model'));
-app.use("/",useCaseDocumentRouter)
-app.use("/",ReleaseNoteRouter)
+app.use('/api', mainRouter);
+
 
 // global error handler
-app.use(errorHandler);
+// app.use(errorHandler);
 
 // start server
-const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 3000;
-const server = app.listen(port, function () {
-    console.log('Server listening on port ' + port);
+app.listen(PORT, (error) => {
+    if(error){
+        console.log(`Error while listening to the port, ERROR -->  ${error.message}`);
+        return;
+    }
+    console.log(`Server listening on port ${PORT}`);
 });
