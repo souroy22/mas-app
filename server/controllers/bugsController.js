@@ -1,4 +1,5 @@
 const Bug = require("../models/bugsModel");
+const Company = require("../models")
 const moment = require("moment");
 
 const bugsController = {
@@ -148,8 +149,12 @@ const bugsController = {
 
   getAllBugs: async (req, res) => {
     try {
-      // TODO: need to find bugs only for specific USER
-      const bugs = await Bug.find({});
+      const {companyId, projectId} = req.params;
+      if(!(companyId && projectId)){
+           return res.status(400).json({error: "Please provide company id and project id"});
+      }
+
+      const bugs = await Company.findById(companyId).populate("projects").populate("bugs");
       if (!bugs) {
         return res.status(400).json({ error: "Unable to find any bug" });
       }
@@ -188,6 +193,7 @@ const bugsController = {
               return res.status(400).json({error: "Please provide bug id"});
          }
          await Bug.findByIdAndDelete(id);
+         return res.status(200).json({msg: "Bug deleted successfully"});
     } catch (error) {
      console.log("Error while deleting bug", error.message);
      return res

@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 // importing all the routers
-const bugsRouter = require("./bugsRouters");
+const bugsRouter = require("./allRouters/bugsRouters");
 const userRouter = require("./userRouters");
-const companyRouter = require("./companyRouters");
-const projectRouter = require("./projectRouters");
-const testRouter = require("./testRouters");
+const companyRouter = require("./allRouters/companyRouters");
+const projectRouter = require("./allRouters/projectRouters");
+const testRouter = require("./allRouters/testRouters");
 
 // using routers
 app.use('/user', userRouter);
