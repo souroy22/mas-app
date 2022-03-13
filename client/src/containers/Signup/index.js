@@ -1,116 +1,158 @@
-import { makeStyles, Grid, Button, TextField } from '@material-ui/core';
-import { Alert, AlertTitle } from '@material-ui/lab';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux'
-import { handle } from '../../utils/helpers';
-import api from '../../redux/api';
-import { useNavigate } from 'react-router';
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
-const useStyles = makeStyles((theme) => ({
-    toolbar: theme.mixins.toolbar                                                                                                                                                                                                   
-}))
+const theme = createTheme();
 
-const Signup = () => {
-    const { register, handleSubmit, formState: {errors},reset, control} = useForm();
-    const [signUpErrors, setsignUpErrors] = React.useState(false);
-    const navigate = useNavigate();
-
-    const signup = async ({username, password, firstName, lastName, email}) => {
-        const [credentials, credentialsError] = await handle(api.post("users/register", {
-            username,
-            password,
-            firstName,
-            lastName,
-            email
-        }));
-
-        if (credentialsError) {
-            setsignUpErrors(true)
-        } else {
-            setsignUpErrors(false)
-            navigate("/login")
+const SignUp = () => {
+    const handleSubmit = async (event) => {
+        try {
+            event.preventDefault();
+            const formData = new FormData(event.currentTarget);
+            const data = {
+                username: formData.get('username'),
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                password: formData.get('password')
+            }
+            const response = await axios.post('http://localhost:8000/api/auth/register', data);
+            window.location.href = '/login';
+        } catch (error) {
+            console.log("Error while sign up", error.message);
         }
-    }
-
-    const onSubmit = data => {
-        signup(data)                         
-        reset();
-    }
-
-    const classes = useStyles();
+    };
 
     return (
-        <div style={{width: '100%'}}>
-            <div className={classes.toolbar} />
-            
-            <Grid container justify="center" style={{marginTop: '5%'}}>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <Grid container justify="center" spacing={2}>
-                        {
-                            signUpErrors && (
-                                <Grid item xs={12} container justify="center">
-                                    <Alert severity="error">
-                                        <AlertTitle>Error</AlertTitle>
-                                        Username is already taken or server error.
-                                    </Alert>
+        <div style={{width: '100%', marginTop: '3%'}}>
+            <ThemeProvider theme={theme}>
+                <Container component="main" maxWidth="xs">
+                    <CssBaseline />
+                    <Box
+                        sx={{
+                            marginTop: 8,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                            <LockOutlinedIcon />
+                        </Avatar>
+                        <Typography component="h1" variant="h5">
+                            Sign up
+                        </Typography>
+                        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        autoComplete="given-name"
+                                        name="firstName"
+                                        required
+                                        fullWidth
+                                        id="firstName"
+                                        label="First Name"
+                                        autoFocus
+                                    />
                                 </Grid>
-                            )
-                        }
-                        <Grid item xs={12} container justify="center">
-                            <TextField id="firstName" {...register("firstName", {
-                                required: "First Name is required"
-                            })} error={("firstName" in errors)} helperText={"firstName" in errors && errors.firstName.message} label="First Name" variant="outlined" />
-                        </Grid>
-
-                        <Grid item xs={12} container justify="center">
-                            <TextField id="lastName" {...register("lastName", {
-                                required: "Last Name is required"
-                            })} error={("lastName" in errors)} helperText={"lastName" in errors && errors.lastName.message} label="Last Name" variant="outlined" />
-                        </Grid>
-
-                        <Grid item xs={12} container justify="center">
-                            <TextField id="email" {...register("email", {
-                                required: "Email is required",
-                                pattern: {
-                                    value: /\S+@\S+\.\S+/,
-                                    message: "Entered value does not match email format"
-                                }
-                            })} error={("email" in errors)} helperText={"email" in errors && errors.email.message} label="Email" variant="outlined" />
-                        </Grid>
-
-                        <Grid item xs={12} container justify="center">
-                            <TextField id="username" {...register("username", {
-                                required: "User Name is required"
-                            })} error={("username" in errors)} helperText={"username" in errors && errors.username.message} label="User Name" variant="outlined" autoComplete="new-password" />
-                        </Grid>
-
-                        <Grid item xs={12} container justify="center">
-                            <TextField id="password" {...register("password", {
-                                    required: "Password is required",
-                                    minLength: {
-                                        value: 8,
-                                        message: "Minimum length is 8 characters."
-                                    },
-                                    maxLength: {
-                                        value: 50,
-                                        message: "Maximum length is 50 characters."
-                                    },
-                                    pattern: {
-                                        value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-                                        message: "Password must contain at least one character, one number and one special character."
-                                    }
-                                })} error={("password" in errors)} helperText={"password" in errors && errors.password.message} label="Password" variant="outlined" type="password" autoComplete="new-password" />
-                        </Grid>
-
-                        <Grid item xs={12} container justify="center">
-                            <Button variant="outlined" color="primary" type="submit" disabled={Object.keys(errors).length > 0}>Sign Up</Button>
-                        </Grid>
-                    </Grid>
-                </form>
-            </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        id="lastName"
+                                        label="Last Name"
+                                        name="lastName"
+                                        autoComplete="family-name"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        id="username"
+                                        label="Username"
+                                        name="username"
+                                        autoComplete="password"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        id="email"
+                                        label="Email Address"
+                                        name="email"
+                                        autoComplete="email"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        id="phone"
+                                        label="Contact Number"
+                                        name="phone"
+                                        autoComplete="phone"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        name="password"
+                                        label="Password"
+                                        type="password"
+                                        id="password"
+                                        autoComplete="new-password"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        name="confirm_password"
+                                        label="Confirm Password"
+                                        type="password"
+                                        id="confirm_password"
+                                        autoComplete="new-password"
+                                    />
+                                </Grid>
+                            </Grid>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2 }}
+                            >
+                                Sign Up
+                            </Button>
+                            <Grid container justifyContent="flex-end">
+                                <Grid item>
+                                    <Link href="/login" variant="body2">
+                                        Already have an account? Sign in
+                                    </Link>
+                                </Grid>
+                            </Grid>
+                        </Box>
+                    </Box>
+                </Container>
+            </ThemeProvider>
         </div>
-      );
+    );
 }
 
-export default Signup;
+export default SignUp;
