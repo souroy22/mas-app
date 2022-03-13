@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const schema = new mongoose.Schema(
+const schema = new Schema(
   {
     id: { type: String, unique: true, require: true },
     companyName: { type: String, required: true },
     email: { type: String, required: true },
     phone: { type: String },
-    createdTime: { type: Date, default: new Date() },
-    updatedDate: { type: Date, default: new Date() },
-    createdBy: { type: String, required: true },
+    createdTime: { type: String, default: new Date() },
+    updatedDate: { type: String, default: new Date() },
     projects: [{ type: Schema.Types.ObjectId, ref: "Project" }],
   },
   {

@@ -1,11 +1,13 @@
 const User = require('../models/userModel');
 
-
-
 const userController = {
      getAllUser: async (req, res) => {
           try {
+               const {} = req.body;
                const users = await User.find({}, { "username": 1, "email": 1 });
+               if (!user) {
+                    return res.status(400).json({ error: 'No user found!' });
+               }
                return res.status(200).json(users);
           } catch (error) {
                console.log("Error while login");
@@ -20,7 +22,7 @@ const userController = {
                }
                const user = await User.findById(id);
                if (!user) {
-                    return res.status(400).json({ error: 'No user found!' });
+                    return res.status(400).json({ error: 'No such user found!' });
                }
                return res.status(200).json(user);
           } catch (error) {

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const bugSchema = new mongoose.Schema(
+const bugSchema = new Schema(
   {
     id: { type: String, unique: true, require: true },
     subject: { type: String, required: true },
@@ -8,7 +9,7 @@ const bugSchema = new mongoose.Schema(
     description: { type: String, required: true },
     priority: { type: String, required: true },
     classification: { type: String, required: true },
-    assignee: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    assignee: { type: Schema.Types.ObjectId, ref: "User" },
     tags: { type: Array },
     status: { type: String },
     severity: { type: String },

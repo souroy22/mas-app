@@ -1,5 +1,5 @@
 const express = require('express');
-const bugsController = require('../controllers/bugsController');
+const bugsController = require('../../controllers/bugsController');
 const router = express.Router();
 
 router.post("/create", bugsController.createBug);
