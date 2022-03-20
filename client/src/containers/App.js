@@ -26,6 +26,7 @@ import PrivateRoute from '../components/PrivateRoute';
 import CreateCompany from '../components/CreateCompany';
 import Company from '../containers/Company';
 import Tests from '../components/Tests/Tests';
+import ChatBody from '../components/ChatComponents/component/ChatBody';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -50,6 +51,7 @@ const App = () => {
                 <Route path="/login" exact element={<Login />} />
                 <PrivateRoute path="/" exact element={<TryBuyPage />} /> 
                 <Route path="/signup" exact element={<Signup />} />
+                <Route path="/support/chat" exact element={<ChatBody />} />
                 <PrivateRoute path="/trynow" exact element={<TryBuyPage />} />
                 <PrivateRoute path="/company/new" exact element={<CreateCompany />} />
                 <PrivateRoute path="/company/" exact element={<Company />} />
