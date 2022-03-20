@@ -48,6 +48,31 @@ const authController = {
                return res.status(500).json({ error: `Server error while sign up, ${error.message}` });
           }
      },
+     googleRegister: async (req, res) => {
+          try {
+               const {profileObj} = req.body;
+               const id = nanoid();
+               const createdDate = moment().format("DD/MM/YYYY");
+               let newUser = new User({
+                    id,
+                    firstName: profileObj.givenName,
+                    lastName: profileObj.familyName,
+                    username: profileObj.email,
+                    email: profileObj.email,
+                    password: "P@ssword123",
+                    createdDate,
+                    updatedDate: createdDate,
+               });
+               newUser = await newUser.save();
+               if (!newUser) {
+                    return res.status(400).json({ error: "Failed to save user" });
+               }
+               return res.status(200).json({ user: newUser });       
+          } catch (error) {
+               console.log("Error while google signup", error.message);
+          }
+     },
+
      signin: async (req, res) => {
           try {
                const { useremail, password } = req.body;

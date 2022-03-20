@@ -44,15 +44,7 @@ const SignUp = () => {
 
     const googleOnSubmit = async (response) => {
         try {
-            const data = {
-                // username: formData.get('username'),
-                // firstName: formData.get('firstName'),
-                // lastName: formData.get('lastName'),
-                // email: formData.get('email'),
-                // phone: formData.get('phone'),
-                // password: formData.get('password')
-            }
-            const res = await axios.post('http://localhost:8000/api/auth/googleRegister', data);
+            const res = await axios.post('http://localhost:8000/api/auth/googleRegister', response);
             window.location.href = '/login';
         } catch (error) {
             console.log("Error while sign up", error.message);
@@ -178,15 +170,15 @@ const SignUp = () => {
                         </Box>
                     </Box>
                 </Container>
-                    <GoogleLogin
-                        id="google-signin-btn"
-                        theme="light"
-                        clientId={process.env.REACT_APP_GOOGLE_CLIENTID}
-                        buttonText="Signup ith Google"
-                        onSuccess={googleOnSubmit}
-                        onFailure={googleOnSubmit}
-                        cookiePolicy={"single_host_origin"}
-                    />
+                <GoogleLogin
+                    id="google_signin_btn"
+                    theme="light"
+                    clientId={process.env.REACT_APP_GOOGLE_CLIENTID}
+                    buttonText="Signup with Google"
+                    onSuccess={googleOnSubmit}
+                    onFailure={googleOnSubmit}
+                    cookiePolicy={"single_host_origin"}
+                />
             </ThemeProvider>
         </div>
     );
