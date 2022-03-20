@@ -24,11 +24,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Link } from 'react-router-dom';
 
-
-
-
-
-
 const FirstName = React.createContext();
 
 const style = {
@@ -103,13 +98,6 @@ const ProjectPageBugs = props => {
     };
 
 
-    const config = {
-        headers: {
-            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MWU1YTBhY2UwMWZkMzBlYzBiMGZjMjUiLCJpYXQiOjE2NDM2MDgwOTEsImV4cCI6MTY0NDIxMjg5MX0.evZcAfui0o2N4zPBhGK5iuRNQet_FrKO2hVfEzG6SiM`
-        }
-    }
-
-
     const handleChange2 = (name, value) => {
         if (name === 'username') {
             setUsername(value)
@@ -117,45 +105,72 @@ const ProjectPageBugs = props => {
         else if (name === 'role') {
             setRole(value)
         }
+        else if (name === 'email'){
+            setEmail(value);
+        }
     }
-
-
+    
+    
     const [getdata, setGetdata] = React.useState([]);
-
-    const [username, setUsername] = React.useState("")
-    const [role, setRole] = React.useState("")
-
-
-    const info = {username: username,
-        role: role,
-    }
-
+    
+    const [username, setUsername] = React.useState("");
+    const [role, setRole] = React.useState("");
+    const [email, setEmail] = React.useState("");
+    
+    const [cookies] = useCookies(['user']);
     const details = {username: username,
         role: role,
     }
 
     const PutData = async (_id) => {
-    const res = await axios.put(`http://localhost:3000/users${_id}`, details, config);
-    GetData();
-    handleClose();
+        const config = {
+            headers: { Authorization: `Bearer ${cookies.user.token}`}
+        }
+        const res = await axios.put(`http://localhost:3000/users${_id}`, details, config);
+        GetData();
+        handleClose();
     }
 
     const PostData = async () => {
-        await axios.post(`http://localhost:3000/users`, info, config);
-        setBox(false);
-        GetData();
+        try {
+            if(!(username && role && email)){
+                console.log("Please add all required fields");
+                return;
+            }
+            const info = {
+                username,
+                role,
+                email
+            }
+            const config = {
+                headers: { Authorization: `Bearer ${cookies.user.token}`}
+            }
+            await axios.post(`http://localhost:3000/users`, info, config);
+            setEmail('');
+            setRole('');
+            setUsername('');
+            setBox(false);
+            GetData();
+        } catch (error) {
+            console.log("Error while saving user data", error.message);
+        }
     }
 
     const Ondelete = async (_id) => {
-        console.log(_id)
+        const config = {
+            headers: { Authorization: `Bearer ${cookies.user.token}`}
+        }
         var zex = await axios.delete(`http://localhost:3000/users/${_id}`, config);
         console.log(zex)
         GetData();
     }
 
     const GetData = async () => {
+        const config = {
+            headers: { Authorization: `Bearer ${cookies.user.token}`}
+        }
         const res = await axios.get(`http://localhost:3000/users`, config);
-        setGetdata(res.data.data);
+        // setGetdata(res.data.data);
         console.log(res);
     }
 
@@ -185,7 +200,6 @@ const ProjectPageBugs = props => {
     const [bugs, setBugs] = React.useState([]);
     const [selected, setSelected] = React.useState(0);
     const params = useParams();
-    const [cookies] = useCookies(['user']);
     const user = useSelector(state => state.authentication.user);
     const navigate = useNavigate();
 
@@ -338,9 +352,9 @@ const ProjectPageBugs = props => {
                                                                                 id="role"
                                                                                 key={value._id} 
                                                                                 onChange={(e) => handleChange2('role', e.target.value)}
-                                                                                multiline
+                                                                                // multiline
                                                                                 sx={{ marginBottom: "30px" }}
-                                                                                rows={5} />
+                                                                                 />
 
 
                                                                             <Stack direction="row"  justifyContent="space-between">
@@ -393,21 +407,35 @@ const ProjectPageBugs = props => {
                                     <Stack spacing={3} >
                                         <label><b>User name</b></label>
                                         <TextField
+                                            error
+                                            id="outlined-required"
                                             value={username}
                                             name="username"
-                                            id="username"
+                                            // id="username"
                                             onChange={(e) => handleChange2('username', e.target.value)}
                                         />
 
+                                        <label><b>Email ID</b></label>
+                                        <TextField
+                                            error
+                                            id="outlined-required"
+                                            value={email}
+                                            name="email"
+                                            // id="email"
+                                            onChange={(e) => handleChange2('email', e.target.value)}
+                                        />
                                         <label><b>Role</b></label>
                                         <TextField
+                                            error
+                                            id="outlined-required"
                                             value={role}
                                             name="role"
-                                            id="role"
+                                            // id="role"
                                             onChange={(e) => handleChange2('role', e.target.value)}
-                                            multiline
+                                            // multiline
                                             sx={{ marginBottom: "30px" }}
-                                            rows={5} />
+                                            // rows={5}
+                                             />
 
 
                                         <Stack direction="row" >
@@ -418,7 +446,8 @@ const ProjectPageBugs = props => {
                                                     margin: "5px auto",
                                                     padding: '10px',
                                                     backgroundColor: "#1A66CA",
-                                                    color: "white"
+                                                    color: "white",
+                                                    cursor: 'pointer'
                                                 }}
                                                 onClick={PostData}
                                             >Submit</button>
@@ -429,6 +458,7 @@ const ProjectPageBugs = props => {
                                                     minWidth: "20%",
                                                     margin: "5px auto",
                                                     padding: '10px',
+                                                    cursor: 'pointer'
                                                 }} onClick={popdown} >Cancel</button>
                                         </Stack>
                                     </Stack>
