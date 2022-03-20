@@ -168,17 +168,18 @@ const SignUp = () => {
                                 </Grid>
                             </Grid>
                         </Box>
+                                <GoogleLogin
+                                    id="google_signin_btn"
+                                    theme="dark"
+                                    clientId={process.env.REACT_APP_GOOGLE_CLIENTID}
+                                    buttonText="Signup with Google"
+                                    onSuccess={googleOnSubmit}
+                                    onFailure={googleOnSubmit}
+                                    cookiePolicy={"single_host_origin"}
+                                    style={{minWidth: '400px'}}
+                                />
                     </Box>
                 </Container>
-                <GoogleLogin
-                    id="google_signin_btn"
-                    theme="light"
-                    clientId={process.env.REACT_APP_GOOGLE_CLIENTID}
-                    buttonText="Signup with Google"
-                    onSuccess={googleOnSubmit}
-                    onFailure={googleOnSubmit}
-                    cookiePolicy={"single_host_origin"}
-                />
             </ThemeProvider>
         </div>
     );
