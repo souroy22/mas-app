@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { handle } from '../../utils/helpers';
 import api from '../../redux/api';
 import { useNavigate } from 'react-router';
+import { GoogleLogin } from "react-google-login";
 
 const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar                                                                                                                                                                                                   
@@ -36,6 +37,10 @@ const Signup = () => {
     const onSubmit = data => {
         signup(data)                         
         reset();
+    }
+
+    const googleOnSubmit = () => {
+        console.log("Clicked");
     }
 
     const classes = useStyles();
@@ -108,6 +113,15 @@ const Signup = () => {
                         </Grid>
                     </Grid>
                 </form>
+                <GoogleLogin
+                    id="google-signin-btn"
+                    theme="dark"
+                    clientId={process.env.REACT_APP_GOOGLE_CLIENTID}
+                    buttonText="Login with Google"
+                    onSuccess={googleOnSubmit}
+                    onFailure={googleOnSubmit}
+                    cookiePolicy={"single_host_origin"}
+          />
             </Grid>
         </div>
       );
